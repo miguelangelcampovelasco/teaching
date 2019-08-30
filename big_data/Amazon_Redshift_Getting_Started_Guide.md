@@ -290,7 +290,7 @@ After you complete this step, you can determine whether you want to load sample 
 
 You can use most SQL client tools with Amazon Redshift JDBC or ODBC drivers to connect to an Amazon Redshift cluster. In this tutorial, you connect using SQL Workbench/J, a free, DBMS-independent, cross-platform SQL query tool. If you plan to use SQL Workbench/J to complete this tutorial, use the steps following to set up the Amazon Redshift JDBC driver and SQL Workbench/J. For more complete instructions for installing SQL Workbench/J, go to [Setting Up the SQL Workbench/J Client](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html) in the _Amazon Redshift Cluster Management Guide_. If you use an Amazon EC2 instance as your client computer, install SQL Workbench/J and the required drivers on the instance.
 
-**Note**  
+**Note**
 Install any third-party database tools that you want to use with your clusters yourself. Amazon Redshift doesn't provide or install any third-party tools or libraries.
 
 #### [To Install SQL Workbench/J on Your Client Computer](#to-install-sql-workbenchj-on-your-client-computer)
@@ -299,13 +299,26 @@ Install any third-party database tools that you want to use with your clusters y
     
 2.  Go to the [SQL Workbench/J website](http://www.sql-workbench.net/) and download the appropriate package for your operating system.
     
-3.  Go to the [Installing and starting SQL Workbench/J page](http://www.sql-workbench.net/manual/install.html) and install SQL Workbench/J. **Important**  
-    Note the Java runtime version prerequisites for SQL Workbench/J and ensure you are using that version. Otherwise, the client application doesn't run.
+3.  Go to the [Installing and starting SQL Workbench/J page](http://www.sql-workbench.net/manual/install.html) and install SQL Workbench/J. 
+
+**Important**
+Note the Java runtime version prerequisites for SQL Workbench/J and ensure you are using that version. Otherwise, the client application doesn't run.
     
+
 4.  Go to [Configure a JDBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html) and download an Amazon Redshift JDBC driver to enable SQL Workbench/J to connect to your cluster.
     
 
 For more information about using the Amazon Redshift JDBC or ODBC drivers, see [Configuring Connections in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/configuring-connections.html).
+
+**If you have difficulty to install SQL Workbench, you can download it from [sql workbench via google drive](https://drive.google.com/file/d/1B-s_MwWwDXfIxECOyIuaKv4v9_2oP6Ld/view?usp=sharing)**
+
+* Download it and uncompress it, enter the folder.
+
+* Uncompress OpenJDK for your OS locally.
+
+  ![openjdk](/big_data/redshift/openjdk.png)
+
+* Open SQL Workbench by double clicking `sqlworkbench.cmd` for windows or `sqlworkbench.sh` for macos.
 
 ### [To Get Your Connection String](#to-get-your-connection-string)
 
@@ -313,7 +326,7 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
     
 2.  Choose `examplecluster` to open it, and make sure that you are on the **Configuration** tab.
     
-3.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster. **Note**  
+3.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster. **Note**
     The endpoint for your cluster is not available until the cluster is created and in the available state. 
     
     ![1567138357-90bf9455f9c2e60d298af52588e1d18e](/big_data/redshift/1567138357-90bf9455f9c2e60d298af52588e1d18e.png)
