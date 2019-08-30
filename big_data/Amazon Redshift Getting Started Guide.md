@@ -80,7 +80,7 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
     
 2.  In the main menu, select the region in which you want to create the cluster. For the purposes of this tutorial, select **US West (Oregon)**. 
     
-    ![1567136734-4d235c5ca5e53a7402806a9379ecf956](/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
+    ![1567136734-4d235c5ca5e53a7402806a9379ecf956](/big_data/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
     
 3. On the Amazon Redshift Dashboard, choose **Quick launch cluster**.
 
