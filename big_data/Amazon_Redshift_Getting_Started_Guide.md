@@ -80,13 +80,13 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
     
 2.  In the main menu, select the region in which you want to create the cluster. For the purposes of this tutorial, select **US West (Oregon)**. 
     
-    ![1567136734-4d235c5ca5e53a7402806a9379ecf956](/big_data/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
+    ![1567136734-4d235c5ca5e53a7402806a9379ecf956](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
     
 3. On the Amazon Redshift Dashboard, choose **Quick launch cluster**.
 
    The Amazon Redshift Dashboard looks similar to the following.  
 
-   ![1567136734-36214042904b6cfa0628a5ded9e24527](/big_data/redshift/1567136734-36214042904b6cfa0628a5ded9e24527.png)
+   ![1567136734-36214042904b6cfa0628a5ded9e24527](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-36214042904b6cfa0628a5ded9e24527.png)
 
 4. On the Cluster specifications page, enter the following values and then choose **Launch cluster**:
 
@@ -100,22 +100,22 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
 
    Quick Launch automatically creates a default database named **dev**.  
 
-   ![1567136734-5fb2efd84b51d07b478add494037065f](/big_data/redshift/1567136734-5fb2efd84b51d07b478add494037065f.png)
+   ![1567136734-5fb2efd84b51d07b478add494037065f](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-5fb2efd84b51d07b478add494037065f.png)
 
 **Note** 
 _Quick Launch uses the default virtual private cloud (VPC) for your region. If a default VPC doesn't exist, Quick Launch returns an error. If you don't have a default VPC, you can use the standard Launch Cluster wizard to use a different VPC. For more information, see [Creating a Cluster by Using Launch Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)._
 
 5. A confirmation page appears and the cluster takes a few minutes to finish. Choose **Close** to return to the list of clusters. 
 
-   ![1567136734-3e61922717acdcb38d8b6c1a3b3cff93](/big_data/redshift/1567136734-3e61922717acdcb38d8b6c1a3b3cff93.png)
+   ![1567136734-3e61922717acdcb38d8b6c1a3b3cff93](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-3e61922717acdcb38d8b6c1a3b3cff93.png)
 
 6. On the Clusters page, choose the cluster that you just launched and review the **Cluster Status** information. Make sure that the **Cluster Status** is **available** and the **Database Health** is **healthy** before you try to connect to the database later in this tutorial. 
 
-   ![1567136734-27616a1eba1a0df65affc21e7ca72434](/big_data/redshift/1567136734-27616a1eba1a0df65affc21e7ca72434.png)
+   ![1567136734-27616a1eba1a0df65affc21e7ca72434](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-27616a1eba1a0df65affc21e7ca72434.png)
 
 7. On the Clusters page, choose the cluster that you just launched, choose the **Cluster** button, then **Modify cluster**. Choose the **VPC security groups** to associate with this cluster, then choose **Modify** to make the association. Make sure that the **Cluster Properties** displays the **VPC security groups** you chose before continuing to the next step.  
 
-   ![1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98](/big_data/redshift/1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98.png)
+   ![1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98.png)
 
 
 # [Step 4: Authorize Access to the Cluster](#step-4-authorize-access-to-the-cluster)
@@ -130,11 +130,11 @@ In the previous step, you launched your Amazon Redshift cluster. Before you can 
     
 3.  Under **Cluster Properties**, for **VPC Security Groups**, choose your security group. 
     
-    ![1567138244-0aefba43b066ce93e4fb633d80d744bf](/big_data/redshift/1567138244-0aefba43b066ce93e4fb633d80d744bf.png)
+    ![1567138244-0aefba43b066ce93e4fb633d80d744bf](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138244-0aefba43b066ce93e4fb633d80d744bf.png)
     
 4. After your security group opens in the Amazon EC2 console, choose the **Inbound** tab. 
 
-   ![1567138244-712aaed0b855d6868312c365e20c734d](/big_data/redshift/1567138244-712aaed0b855d6868312c365e20c734d.png)
+   ![1567138244-712aaed0b855d6868312c365e20c734d](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138244-712aaed0b855d6868312c365e20c734d.png)
 
 5. Choose **Edit**, **Add Rule**, and enter the following, then choose **Save**:
 
@@ -150,7 +150,7 @@ In the previous step, you launched your Amazon Redshift cluster. Before you can 
        
        Using 0.0.0.0/0 is not recommended for anything other than demonstration purposes because it allows access from any computer on the internet. In a real environment, you would create inbound rules based on your own network settings. 
        
-       ![1567138244-edbbb26cf2a3effcd6e22d32537240dc](/big_data/redshift/1567138244-edbbb26cf2a3effcd6e22d32537240dc.png)
+       ![1567138244-edbbb26cf2a3effcd6e22d32537240dc](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138244-edbbb26cf2a3effcd6e22d32537240dc.png)
 
 
 # [Step 5: Connect to the Sample Cluster and Run Queries](#step-5-connect-to-the-sample-cluster-and-run-queries)
@@ -240,7 +240,7 @@ In the following example, you use the Query Editor to perform the following task
     
 4.  For **Schema**, choose \*\*public \*\*to create a new table based on that schema. 
     
-    ![1567138357-1bda0adb320304119e527110523bc356](/big_data/redshift/1567138357-1bda0adb320304119e527110523bc356.png)
+    ![1567138357-1bda0adb320304119e527110523bc356](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-1bda0adb320304119e527110523bc356.png)
     
 5. Enter the following in the Query Editor window and choose **Run query** to create a new table.
 
@@ -273,7 +273,7 @@ In the following example, you use the Query Editor to perform the following task
 
    You should see the following results. 
 
-   ![1567138357-13831b68abef72426564caf455546a1e](/big_data/redshift/1567138357-13831b68abef72426564caf455546a1e.png)
+   ![1567138357-13831b68abef72426564caf455546a1e](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-13831b68abef72426564caf455546a1e.png)
 
 ## [Querying a Database Using a SQL Client](#querying-a-database-using-a-sql-client)
 
@@ -315,7 +315,7 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
 
 * Uncompress OpenJDK for your OS locally.
 
-  ![openjdk](/big_data/redshift/openjdk.png)
+  ![openjdk](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/openjdk.png)
 
 * Open SQL Workbench by double clicking `sqlworkbench.cmd` for Windows or run ` sh sqlworkbench.sh` in terminal for Macos/Linux.
 
@@ -328,7 +328,7 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
 3.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster. **Note**
     The endpoint for your cluster is not available until the cluster is created and in the available state. 
     
-    ![1567138357-90bf9455f9c2e60d298af52588e1d18e](/big_data/redshift/1567138357-90bf9455f9c2e60d298af52588e1d18e.png)
+    ![1567138357-90bf9455f9c2e60d298af52588e1d18e](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-90bf9455f9c2e60d298af52588e1d18e.png)
 
 ### [To Connect from SQL Workbench/J to Your Cluster](#to-connect-from-sql-workbenchj-to-your-cluster)
 
@@ -346,11 +346,11 @@ This step assumes you installed SQL Workbench/J.
     
 6.  Choose **Create a new entry**. For **Name**, enter a name for the driver.  
     
-    ![1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f](/big_data/redshift/1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f.png)
+    ![1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f.png)
     
     Choose the folder icon next to the **Library** box, navigate to the location of the driver, choose it, and then choose **Open**.  
     
-    ![1567138357-5fa9b629f60a7e750ad33583976775e5](/big_data/redshift/1567138357-5fa9b629f60a7e750ad33583976775e5.png)
+    ![1567138357-5fa9b629f60a7e750ad33583976775e5](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-5fa9b629f60a7e750ad33583976775e5.png)
     
     If the **Please select one driver** dialog box displays, choose **com.amazon.redshift.jdbc4.Driver** or **com.amazon.redshift.jdbc41.Driver** and then choose **OK**. SQL Workbench/J automatically completes the **Classname** box. Keep **Sample URL** blank, and choose **OK**.
     
@@ -366,11 +366,11 @@ This step assumes you installed SQL Workbench/J.
 
 12. Choose the **Save profile list** icon, as shown following. 
 
-    ![1567138357-d476f16ebbe21e8cd9db789290d46001](/big_data/redshift/1567138357-d476f16ebbe21e8cd9db789290d46001.png)
+    ![1567138357-d476f16ebbe21e8cd9db789290d46001](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-d476f16ebbe21e8cd9db789290d46001.png)
 
 13. Choose **OK**.  
 
-    ![1567138357-b0cd9e989be8fa778a3119e8bd275f32](/big_data/redshift/1567138357-b0cd9e989be8fa778a3119e8bd275f32.png)
+    ![1567138357-b0cd9e989be8fa778a3119e8bd275f32](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138357-b0cd9e989be8fa778a3119e8bd275f32.png)
 
 14. Enter the following command in the query window and choose **SQL**, **Execute Current** to add rows to the table.
 
@@ -602,13 +602,13 @@ delimiter '\t' timeformat 'MM/DD/YYYY HH:MI:SS' region 'us-west-2';
         
         The console displays list of queries you ran, as shown in the example following.  
         
-        ![1567138663-fff5a9fa5dc1904e959bc21c2e4e359b](/big_data/redshift/1567138663-fff5a9fa5dc1904e959bc21c2e4e359b.png)
+        ![1567138663-fff5a9fa5dc1904e959bc21c2e4e359b](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138663-fff5a9fa5dc1904e959bc21c2e4e359b.png)
         
     4.  To view more information about a query, choose the query ID link in the **Query** column or choose the magnifying glass icon.
         
         The following example shows the details of a query you ran in a previous step.  
         
-        ![1567138663-039a6410688dc9666a1ce41fdcf13993](/big_data/redshift/1567138663-039a6410688dc9666a1ce41fdcf13993.png)
+        ![1567138663-039a6410688dc9666a1ce41fdcf13993](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138663-039a6410688dc9666a1ce41fdcf13993.png)
 
 
 
@@ -645,15 +645,15 @@ When you have completed this tutorial, you should reset your environment to the 
     
 3.  Under **Cluster Properties**, choose the VPC security group.  
     
-    ![1567138801-0aefba43b066ce93e4fb633d80d744bf](/big_data/redshift/1567138801-0aefba43b066ce93e4fb633d80d744bf.png)
+    ![1567138801-0aefba43b066ce93e4fb633d80d744bf](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-0aefba43b066ce93e4fb633d80d744bf.png)
     
 4. With the default security group selected, choose the **Inbound** tab and then choose **Edit**. 
 
-   ![1567138801-a01d2f724fdf63fcd49ef79aad1727e8](/big_data/redshift/1567138801-a01d2f724fdf63fcd49ef79aad1727e8.png)
+   ![1567138801-a01d2f724fdf63fcd49ef79aad1727e8](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-a01d2f724fdf63fcd49ef79aad1727e8.png)
 
 5. Delete the custom TCP/IP ingress rule that you created for your port and CIDR/IP address 0.0.0.0/0. Do not remove any other rules, such as the **All traffic** rule that was created for the security group by default. Choose **Save**.  
 
-   ![1567138801-90ea1f031e6c72d355a1888ae482cd50](/big_data/redshift/1567138801-90ea1f031e6c72d355a1888ae482cd50.png)
+   ![1567138801-90ea1f031e6c72d355a1888ae482cd50](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-90ea1f031e6c72d355a1888ae482cd50.png)
 
 #### [To Delete the Sample Cluster](#to-delete-the-sample-cluster)
 
@@ -663,15 +663,15 @@ When you have completed this tutorial, you should reset your environment to the 
     
 3.  In the **Cluster** menu, choose **Delete**.  
     
-    ![1567138801-855389ca63e7ee4073b5623aa52f3d40](/big_data/redshift/1567138801-855389ca63e7ee4073b5623aa52f3d40.png)
+    ![1567138801-855389ca63e7ee4073b5623aa52f3d40](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-855389ca63e7ee4073b5623aa52f3d40.png)
     
 4. In the **Delete Cluster** window, for **Create snapshot**, choose **No** and then choose **Delete**.  
 
-   ![1567138801-248c72dffbb904b4922d0f793066e9a3](/big_data/redshift/1567138801-248c72dffbb904b4922d0f793066e9a3.png)
+   ![1567138801-248c72dffbb904b4922d0f793066e9a3](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-248c72dffbb904b4922d0f793066e9a3.png)
 
 5. On the cluster details window, the **Cluster Status** displays that the cluster is being deleted. 
 
-   ![1567138801-bf08a1a1a746936e4907e4b10f5019c3](/big_data/redshift/1567138801-bf08a1a1a746936e4907e4b10f5019c3.png)
+   ![1567138801-bf08a1a1a746936e4907e4b10f5019c3](https://github.com/liuhoward/teaching/blob/master/big_data/redshift/1567138801-bf08a1a1a746936e4907e4b10f5019c3.png)
 
 
 
