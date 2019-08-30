@@ -71,7 +71,7 @@ Now that you have created the new role, your next step is to attach it to your c
 Now that you have the prerequisites completed, you can launch your Amazon Redshift cluster.
 
 **Important** 
-_The cluster that you are about to launch is live (and not running in a sandbox). You incur the standard Amazon Redshift usage fees for the cluster until you delete it._ If you complete the tutorial described here in one sitting and delete the cluster when you are finished, the total charges are minimal.
+_The cluster that you are about to launch is live (and not running in a sandbox). You incur the standard Amazon Redshift usage fees for the cluster until you delete it. If you complete the tutorial described here in one sitting and delete the cluster when you are finished, the total charges are minimal._
 
 ## [To Launch an Amazon Redshift Cluster](#to-launch-an-amazon-redshift-cluster)
 
@@ -102,9 +102,8 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
 
    ![1567136734-5fb2efd84b51d07b478add494037065f](/big_data/redshift/1567136734-5fb2efd84b51d07b478add494037065f.png)
 
-   **Note**  
-
-   Quick Launch uses the default virtual private cloud (VPC) for your region. If a default VPC doesn't exist, Quick Launch returns an error. If you don't have a default VPC, you can use the standard Launch Cluster wizard to use a different VPC. For more information, see [Creating a Cluster by Using Launch Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster).
+**Note** 
+_Quick Launch uses the default virtual private cloud (VPC) for your region. If a default VPC doesn't exist, Quick Launch returns an error. If you don't have a default VPC, you can use the standard Launch Cluster wizard to use a different VPC. For more information, see [Creating a Cluster by Using Launch Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)._
 
 5. A confirmation page appears and the cluster takes a few minutes to finish. Choose **Close** to return to the list of clusters. 
 
@@ -491,15 +490,20 @@ After you complete this step, you can find more information about Amazon Redshif
     
     ```
     
-2.  Load sample data from Amazon S3 by using the COPY command. **Note**  
-    We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3 or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide_.
-    
+2.  Load sample data from Amazon S3 by using the COPY command. 
+
+​    **Note**
+​    We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3              or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide_.
+​    
 
 The sample data for this tutorial is provided in an Amazon S3 bucket that is owned by Amazon Redshift. The bucket permissions are configured to allow all authenticated AWS users read access to the sample data files.
 
 To load the sample data, you must provide authentication for your cluster to access Amazon S3 on your behalf. You can provide either role-based authentication or key-based authentication. We recommend using role-based authentication. For more information about both types of authentication, see [CREDENTIALS](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-credentials.html) in the Amazon Redshift Database Developer Guide.
 
-For this step, you provide authentication by referencing the IAM role that you created and then attached to your cluster in previous steps. **Note**  
+For this step, you provide authentication by referencing the IAM role that you created and then attached to your cluster in previous steps. 
+
+
+**Note**
 If you don't have proper permissions to access Amazon S3, you receive the following error message when running the COPY command: `S3ServiceException: Access Denied`.
 
 The COPY commands include a placeholder for the Amazon Resource Name (ARN) for the IAM role, as shown in the following example.
