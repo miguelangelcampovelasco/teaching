@@ -318,7 +318,7 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
 
   ![openjdk](/big_data/redshift/openjdk.png)
 
-* Open SQL Workbench by double clicking `sqlworkbench.cmd` for windows or `sqlworkbench.sh` for macos.
+* Open SQL Workbench by double clicking `sqlworkbench.cmd` for Windows or run ` sh sqlworkbench.sh` in terminal for Macos/Linux.
 
 ### [To Get Your Connection String](#to-get-your-connection-string)
 
