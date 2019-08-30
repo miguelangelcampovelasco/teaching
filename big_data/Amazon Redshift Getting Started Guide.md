@@ -655,3 +655,14 @@ When you have completed this tutorial, you should reset your environment to the 
 5. On the cluster details window, the **Cluster Status** displays that the cluster is being deleted. 
 
    ![1567138801-bf08a1a1a746936e4907e4b10f5019c3](/big_data/redshift/1567138801-bf08a1a1a746936e4907e4b10f5019c3.png)
+
+
+
+# Reference
+
+[1] [https://docs.aws.amazon.com/redshift/index.html](https://docs.aws.amazon.com/redshift/index.html)
+
+[2] [https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)
+
+
+
