@@ -1,5 +1,8 @@
-
 # Amazon Redshift Getting Started Guide
+
+Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. An Amazon Redshift data warehouse is a collection of
+computing resources called nodes, which are organized into a group called a cluster. Each cluster runs an
+Amazon Redshift engine and contains one or more databases.
 
 
 [TOC]
@@ -12,16 +15,14 @@ Before you begin setting up an Amazon Redshift cluster, make sure that you compl
 *   [Sign Up for AWS](#rs-gsg-prereq-signup)
 *   [Determine Firewall Rules](#rs-gsg-prereq-firewall-rules)
 
-## [Sign Up for AWS](#sign-up-for-aws)
+## [Sign Up for AWS Educate](#sign-up-for-aws)
 
-If you don’t already have an AWS account, you must sign up for one. If you already have an account, you can skip this prerequisite and use your existing account.
+If you don’t already have an AWS account, you must sign up for one. 
 
-1.  Open [https://portal.aws.amazon.com/billing/signup](https://portal.aws.amazon.com/billing/signup).
-    
+1.  Open [https://aws.amazon.com/education/awseducate/](https://aws.amazon.com/education/awseducate/).
 2.  Follow the online instructions.
-    
-    Part of the sign-up procedure involves receiving a phone call and entering a verification code on the phone keypad.
-    
+
+Then you can log in [AWS Management Console](https://console.aws.amazon.com/)
 
 ## [Determine Firewall Rules](#determine-firewall-rules)
 
@@ -42,25 +43,31 @@ In this step, you create a new IAM role that enables Amazon Redshift to load dat
 
 1.  Sign in to the AWS Management Console and open the IAM console at [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/).
     
-2.  In the navigation pane, choose **Roles**.
+    ![2019-08-30_18-15](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-15.png)
     
-3.  Choose **Create role**.
-    
-4.  In the **AWS Service** group, choose **Redshift.**
-    
-5.  Under **Select your use case**, choose **Redshift - Customizable** then choose **Next: Permissions**.
-    
-6.  On the **Attach permissions policies** page, choose **AmazonS3ReadOnlyAccess**. You can leave the default setting for **Set permissions boundary**. Then choose **Next: Tags**.
-    
-7.  The **Add tags** page appears. You can optionally add tags. Choose **Next: Review**.
-    
-8.  For **Role name**, type a name for your role. For this tutorial, type `myRedshiftRole`.
-    
-9.  Review the information, and then choose **Create Role**.
-    
-10.  Choose the role name of the role you just created.
-    
-11.  Copy the **Role ARN** to your clipboard—this value is the Amazon Resource Name (ARN) for the role that you just created. You use that value when you use the COPY command to load data in [Step 6: Load Sample Data from Amazon S3](#step-6-load-sample-data-from-amazon-s3).
+2. In the navigation pane, choose **Roles**.
+
+3. Choose **Create role**.
+
+4. In the **AWS Service** group, choose **Redshift.**
+
+5. Under **Select your use case**, choose **Redshift - Customizable** then choose **Next: Permissions**.
+
+   ![2019-08-30_18-07](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-07.png)
+
+6. On the **Attach permissions policies** page, choose **AmazonS3ReadOnlyAccess**. You can leave the default setting for **Set permissions boundary**. Then choose **Next: Tags**.
+
+   ![2019-08-30_18-08](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-08.png)
+
+7. The **Add tags** page appears. You can optionally add tags. Choose **Next: Review**.
+
+8. For **Role name**, type a name for your role. For this tutorial, type `myRedshiftRole`.
+
+9. Review the information, and then choose **Create Role**.
+
+10. Choose the role name of the role you just created.
+
+11. Copy the **Role ARN** to your clipboard—this value is the Amazon Resource Name (ARN) for the role that you just created. You use that value when you use the COPY command to load data in [Step 6: Load Sample Data from Amazon S3](#step-6-load-sample-data-from-amazon-s3).
 
 
 Now that you have created the new role, your next step is to attach it to your cluster. You can attach the role when you launch a new cluster or you can attach it to an existing cluster. In the next step, you'll attach the role to a new cluster.
@@ -75,13 +82,12 @@ _The cluster that you are about to launch is live (and not running in a sandbox)
 
 ## [To Launch an Amazon Redshift Cluster](#to-launch-an-amazon-redshift-cluster)
 
-1.  Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console.aws.amazon.com/redshift/](https://console.aws.amazon.com/redshift/).         **Important** 
-If you use IAM user credentials, ensure that the user has the necessary permissions to              perform the cluster operations. For more information, go to [Controlling Access to IAM Users](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html)   in the _Amazon Redshift Cluster Management Guide_.
-    
-2.  In the main menu, select the region in which you want to create the cluster. For the purposes of this tutorial, select **US West (Oregon)**. 
-    
-    ![1567136734-4d235c5ca5e53a7402806a9379ecf956](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
-    
+1.  Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console.aws.amazon.com/redshift/](https://console.aws.amazon.com/redshift/).  
+
+2. In the main menu, select the region in which you want to create the cluster. For the purposes of this tutorial, select **US West (Oregon)**. 
+
+   ![1567136734-4d235c5ca5e53a7402806a9379ecf956](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-4d235c5ca5e53a7402806a9379ecf956.png)
+
 3. On the Amazon Redshift Dashboard, choose **Quick launch cluster**.
 
    The Amazon Redshift Dashboard looks similar to the following.  
@@ -92,7 +98,7 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
 
    *   **Node type**: Choose **dc2.large**.
    *   **Number of compute nodes**: Keep the default value of **2**.
-   *   **Cluster identifier**: Enter the value **examplecluster**.
+   *   **Cluster identifier**: Enter the value **redshift-cluster-<NetID>**.
    *   **Master user name**: Keep the default value of **awsuser**.
    *   **Master user password** and **Confirm password**: Enter a password for the master user account.
    *   **Database port**: Accept the default value of **5439**.
@@ -100,37 +106,40 @@ If you use IAM user credentials, ensure that the user has the necessary permissi
 
    Quick Launch automatically creates a default database named **dev**.  
 
-   ![1567136734-5fb2efd84b51d07b478add494037065f](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-5fb2efd84b51d07b478add494037065f.png)
+   ![2019-08-30_18-28](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-28.png)
 
 **Note** 
 _Quick Launch uses the default virtual private cloud (VPC) for your region. If a default VPC doesn't exist, Quick Launch returns an error. If you don't have a default VPC, you can use the standard Launch Cluster wizard to use a different VPC. For more information, see [Creating a Cluster by Using Launch Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)._
 
 5. A confirmation page appears and the cluster takes a few minutes to finish. Choose **Close** to return to the list of clusters. 
 
-   ![1567136734-3e61922717acdcb38d8b6c1a3b3cff93](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-3e61922717acdcb38d8b6c1a3b3cff93.png)
+   ![2019-08-30_18-33](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-33.png)
+
+   ![2019-08-30_18-34](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-34.png)
 
 6. On the Clusters page, choose the cluster that you just launched and review the **Cluster Status** information. Make sure that the **Cluster Status** is **available** and the **Database Health** is **healthy** before you try to connect to the database later in this tutorial. 
 
-   ![1567136734-27616a1eba1a0df65affc21e7ca72434](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-27616a1eba1a0df65affc21e7ca72434.png)
+   ![2019-08-30_18-37](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-37.png)
 
 7. On the Clusters page, choose the cluster that you just launched, choose the **Cluster** button, then **Modify cluster**. Choose the **VPC security groups** to associate with this cluster, then choose **Modify** to make the association. Make sure that the **Cluster Properties** displays the **VPC security groups** you chose before continuing to the next step.  
 
-   ![1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567136734-3dcc2ec6f3edd7ea0a1bc42e99880d98.png)
+   ![2019-08-30_18-40](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-40.png)
+
 
 
 # [Step 4: Authorize Access to the Cluster](#step-4-authorize-access-to-the-cluster)
 
 In the previous step, you launched your Amazon Redshift cluster. Before you can connect to the cluster, you need to configure a security group to authorize access. If you launched your cluster in the EC2-VPC platform, follow the steps in [To Configure the VPC Security Group (EC2-VPC Platform)](#rs-gsg-how-to-authorize-access-vpc-security-group).
 
-## [To Configure the VPC Security Group (EC2-VPC Platform)](#to-configure-the-vpc-security-group-ec2-vpc-platform)
+## [To Configure the VPC Security Group ](#to-configure-the-vpc-security-group-ec2-vpc-platform)
 
 1.  In the Amazon Redshift console, in the navigation pane, choose **Clusters**.
     
-2.  Choose `examplecluster` to open it, and make sure that you are on the **Configuration** tab.
+2.  Choose `redshift-cluster-<NetID>` to open it, and make sure that you are on the **Configuration** tab.
     
 3.  Under **Cluster Properties**, for **VPC Security Groups**, choose your security group. 
     
-    ![1567138244-0aefba43b066ce93e4fb633d80d744bf](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138244-0aefba43b066ce93e4fb633d80d744bf.png)
+    ![2019-08-30_18-46](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-46.png)
     
 4. After your security group opens in the Amazon EC2 console, choose the **Inbound** tab. 
 
@@ -138,7 +147,7 @@ In the previous step, you launched your Amazon Redshift cluster. Before you can 
 
 5. Choose **Edit**, **Add Rule**, and enter the following, then choose **Save**:
 
-   * **Type**: **Custom TCP Rule**.
+   * **redshift-cluster-<NetID>Type**: **Custom TCP Rule**.
 
    * **Protocol**: **TCP**.
 
@@ -151,6 +160,7 @@ In the previous step, you launched your Amazon Redshift cluster. Before you can 
        Using 0.0.0.0/0 is not recommended for anything other than demonstration purposes because it allows access from any computer on the internet. In a real environment, you would create inbound rules based on your own network settings. 
        
        ![1567138244-edbbb26cf2a3effcd6e22d32537240dc](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138244-edbbb26cf2a3effcd6e22d32537240dc.png)
+
 
 
 # [Step 5: Connect to the Sample Cluster and Run Queries](#step-5-connect-to-the-sample-cluster-and-run-queries)
@@ -203,18 +213,33 @@ If you have already created an IAM user to access Amazon Redshift, you can attac
     
 2.  Choose **Users**.
     
-3.  Choose the user that needs access to the Query Editor.
+3.  Choose **Add user** or Choose the user that needs access to the Query Editor.
     
-4.  Choose **Add permissions**.
+    ![2019-08-30_18-52](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-52.png)
     
-5.  Choose **Attach existing policies directly**.
+    ![2019-08-30_18-53](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-53.png)
     
-6.  For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**.
     
-7.  Choose **Next: Review**.
     
-8.  Choose **Add permissions**.
-    
+4. Choose **Add permissions**.
+
+5. Choose **Attach existing policies directly**.
+
+6. For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**.
+
+   ![2019-08-30_18-56](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-56.png)
+
+7. Choose **Next: Review**.
+
+8. Choose **Create user** or **Add permissions**.
+
+   ![2019-08-30_18-57](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-57.png)
+
+9. Save user **Access key ID** and **Secret access key**
+
+   
+
+   ![2019-08-30_18-58](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-58.png)
 
 ### [Using the Query Editor](#using-the-query-editor)
 
@@ -233,14 +258,19 @@ In the following example, you use the Query Editor to perform the following task
     
 3.  In the **Credentials** dialog box, enter the following values and then choose **Connect**:
     
-    *   **Cluster**: Choose **examplecluster**.
-    *   **Database**: **dev**.
-    *   **Database user**: **awsuser**
-    *   **Password**: Enter the password that you specified when you launched the cluster.
+    * **Cluster**: Choose **redshift-cluster-<NetID>**.
+    
+    * **Database**: **dev**.
+    
+    * **Database user**: **awsuser**
+    
+    * **Password**: Enter the password that you specified when you launched the cluster.
+    
+      ![2019-08-30_19-06](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-06.png)
     
 4.  For **Schema**, choose \*\*public \*\*to create a new table based on that schema. 
     
-    ![1567138357-1bda0adb320304119e527110523bc356](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-1bda0adb320304119e527110523bc356.png)
+    ![2019-08-30_19-07](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-07.png)
     
 5. Enter the following in the Query Editor window and choose **Run query** to create a new table.
 
@@ -248,7 +278,6 @@ In the following example, you use the Query Editor to perform the following task
    create table shoes(
    shoetype varchar (10),
    color varchar(10));
-   
    ```
 
 6. Choose **Clear**.
@@ -259,7 +288,6 @@ In the following example, you use the Query Editor to perform the following task
    insert into shoes values 
    ('loafers', 'brown'),
    ('sandals', 'black');
-   
    ```
 
 8. Choose **Clear**.
@@ -267,13 +295,12 @@ In the following example, you use the Query Editor to perform the following task
 9. Enter the following command in the Query Editor window and choose **Run query** to query the new table.
 
    ```sql
-   select * from shoes;                                       
-   
+   select * from shoes;
    ```
 
    You should see the following results. 
 
-   ![1567138357-13831b68abef72426564caf455546a1e](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-13831b68abef72426564caf455546a1e.png)
+   ![2019-08-30_19-10](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-10.png)
 
 ## [Querying a Database Using a SQL Client](#querying-a-database-using-a-sql-client)
 
@@ -309,7 +336,7 @@ Note the Java runtime version prerequisites for SQL Workbench/J and ensure you a
 
 For more information about using the Amazon Redshift JDBC or ODBC drivers, see [Configuring Connections in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/configuring-connections.html).
 
-**If you have difficulty to install SQL Workbench, you can download it from [sql workbench via google drive](https://drive.google.com/file/d/1B-s_MwWwDXfIxECOyIuaKv4v9_2oP6Ld/view?usp=sharing)**
+**If you have difficulties to install SQL Workbench, you can download it from [sql workbench via google drive](https://drive.google.com/file/d/1B-s_MwWwDXfIxECOyIuaKv4v9_2oP6Ld/view?usp=sharing)**
 
 * Download it and uncompress it, enter the folder.
 
@@ -323,12 +350,12 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
 
 1.  In the Amazon Redshift console, in the navigation pane, choose **Clusters**.
     
-2.  Choose `examplecluster` to open it, and make sure that you are on the **Configuration** tab.
+2.  Choose `redshift-cluster-<NetID>` to open it, and make sure that you are on the **Configuration** tab.
     
 3.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster. **Note**
     The endpoint for your cluster is not available until the cluster is created and in the available state. 
     
-    ![1567138357-90bf9455f9c2e60d298af52588e1d18e](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-90bf9455f9c2e60d298af52588e1d18e.png)
+    ![2019-08-30_19-17](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-17.png)
 
 ### [To Connect from SQL Workbench/J to Your Cluster](#to-connect-from-sql-workbenchj-to-your-cluster)
 
@@ -336,65 +363,56 @@ This step assumes you installed SQL Workbench/J.
 
 1.  Open SQL Workbench/J.
     
-2.  Choose **File**, and then choose **Connect window**.
-    
-3.  Choose **Create a new connection profile**.
-    
-4.  For **New profile**, enter a name for the profile.
-    
-5.  Choose **Manage Drivers**. The **Manage Drivers** dialog box opens.
-    
-6.  Choose **Create a new entry**. For **Name**, enter a name for the driver.  
-    
-    ![1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-9bdbdd5f0d3f45b2591b7c0b2eecc85f.png)
-    
-    Choose the folder icon next to the **Library** box, navigate to the location of the driver, choose it, and then choose **Open**.  
-    
-    ![1567138357-5fa9b629f60a7e750ad33583976775e5](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-5fa9b629f60a7e750ad33583976775e5.png)
-    
-    If the **Please select one driver** dialog box displays, choose **com.amazon.redshift.jdbc4.Driver** or **com.amazon.redshift.jdbc41.Driver** and then choose **OK**. SQL Workbench/J automatically completes the **Classname** box. Keep **Sample URL** blank, and choose **OK**.
-    
-7. For **Driver**, choose the driver that you just added.
+2. Choose **File**, and then choose **Manage Drivers**. The **Manage Drivers** dialog box opens.
 
-8. For **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here.
+   ![2019-08-30_19-21_1](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-21_1.png)
 
-9. For **Username**, enter **awsuser** for the master user.
+   ![2019-08-30_19-22](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-22.png)
 
-10. For **Password**, enter the password associated with the master user account.
+   ![2019-08-30_19-29](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-29.png)
 
-11. Choose **Autocommit**.
+   If the **Please select one driver** dialog box displays, choose **com.amazon.redshift.jdbc4.Driver** or **com.amazon.redshift.jdbc41.Driver** and then choose **OK**. SQL Workbench/J automatically completes the **Classname** box. Keep **Sample URL** blank, and choose **OK**.
 
-12. Choose the **Save profile list** icon, as shown following. 
+3. Choose **File**, and then choose **Connect window**.
 
-    ![1567138357-d476f16ebbe21e8cd9db789290d46001](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-d476f16ebbe21e8cd9db789290d46001.png)
+4. For **New profile**, enter a name for the profile.
 
-13. Choose **OK**.  
+5. For **Driver**, choose the driver that you just added.
 
-    ![1567138357-b0cd9e989be8fa778a3119e8bd275f32](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138357-b0cd9e989be8fa778a3119e8bd275f32.png)
+6. For **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here.
 
-14. Enter the following command in the query window and choose **SQL**, **Execute Current** to add rows to the table.
+7. For **Username**, enter **awsuser** for the master user.
+
+8. For **Password**, enter the password associated with the master user account.
+
+9. Choose **Autocommit**.
+
+10. Choose the **Save profile list** icon, as shown following. 
+
+11. Choose **OK**.  
+
+    ![2019-08-30_19-37](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-37.png)
+
+12. Enter the following command in the query window and choose **SQL**, **Execute Current** to add rows to the table.
 
     ```sql
     create table shoes(
     shoetype varchar (10),
     color varchar(10));
-    
     ```
 
-15. Run the following command to add rows to the table.
+13. Run the following command to add rows to the table.
 
     ```sql
     insert into shoes values 
     ('loafers', 'brown'),
     ('sandals', 'black');
-    
     ```
 
-16. Run the following command to query the new table.
+14. Run the following command to query the new table.
 
     ```sql
-    select * from shoes;                                       
-    
+    select * from shoes;
     ```
 
 
@@ -487,13 +505,14 @@ After you complete this step, you can find more information about Amazon Redshif
         pricepaid decimal(8,2),
         commission decimal(8,2),
         saletime timestamp);
-    
     ```
     
-2.  Load sample data from Amazon S3 by using the COPY command. 
+    ![2019-08-30_19-41](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-41.png)
+    
+2. Load sample data from Amazon S3 by using the COPY command. 
 
-​    **Note**
-​    We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3              or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide_.
+**Note**
+​We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3              or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide_.
 ​    
 
 The sample data for this tutorial is provided in an Amazon S3 bucket that is owned by Amazon Redshift. The bucket permissions are configured to allow all authenticated AWS users read access to the sample data files.
@@ -501,7 +520,6 @@ The sample data for this tutorial is provided in an Amazon S3 bucket that is own
 To load the sample data, you must provide authentication for your cluster to access Amazon S3 on your behalf. You can provide either role-based authentication or key-based authentication. We recommend using role-based authentication. For more information about both types of authentication, see [CREDENTIALS](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-credentials.html) in the Amazon Redshift Database Developer Guide.
 
 For this step, you provide authentication by referencing the IAM role that you created and then attached to your cluster in previous steps. 
-
 
 **Note**
 If you don't have proper permissions to access Amazon S3, you receive the following error message when running the COPY command: `S3ServiceException: Access Denied`.
@@ -589,14 +607,13 @@ delimiter '\t' timeformat 'MM/DD/YYYY HH:MI:SS' region 'us-west-2';
            WHERE Q.eventid = E.eventid
            AND percentile = 1
     ORDER BY total_price desc;
-    
     ```
     
 2.  (Optional) Open the Amazon Redshift console to review the queries that you ran. The **Queries** tab shows a list of queries that you ran over a time period you specify. By default, the console displays queries that have executed in the last 24 hours, including currently executing queries.
     
     1.  Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console.aws.amazon.com/redshift/](https://console.aws.amazon.com/redshift/).
         
-    2.  In the cluster list in the right pane, choose `examplecluster`.
+    2.  In the cluster list in the right pane, choose `redshift-cluster-<NetID>`.
         
     3.  Choose the **Queries** tab.
         
@@ -641,7 +658,7 @@ When you have completed this tutorial, you should reset your environment to the 
 
 1.  In the Amazon Redshift console, in the navigation pane, choose **Clusters**.
     
-2.  Choose **examplecluster** to open it, and make sure that you are on the **Configuration** tab.
+2.  Choose **redshift-cluster-<NetID>** to open it, and make sure that you are on the **Configuration** tab.
     
 3.  Under **Cluster Properties**, choose the VPC security group.  
     
@@ -667,11 +684,29 @@ When you have completed this tutorial, you should reset your environment to the 
     
 4. In the **Delete Cluster** window, for **Create snapshot**, choose **No** and then choose **Delete**.  
 
-   ![1567138801-248c72dffbb904b4922d0f793066e9a3](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138801-248c72dffbb904b4922d0f793066e9a3.png)
+   ![2019-08-30_21-26](/home/hao/work/teaching/big_data/redshift/2019-08-30_21-26.png)
 
 5. On the cluster details window, the **Cluster Status** displays that the cluster is being deleted. 
 
+   ![2019-08-30_21-27](/home/hao/work/teaching/big_data/redshift/2019-08-30_21-27.png)
+   
    ![1567138801-bf08a1a1a746936e4907e4b10f5019c3](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138801-bf08a1a1a746936e4907e4b10f5019c3.png)
+
+
+
+# [Screenshots](#screenshots)
+
+1. Query editor
+
+   ![2019-08-30_19-10](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-10.png)
+
+2. SQL workbench
+
+   ![2019-08-30_19-46](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-46.png)
+
+3. Details of the most recent query
+
+   ![2019-08-30_19-48](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-48.png)
 
 
 
