@@ -39,11 +39,11 @@ To best protect your sensitive data and safeguard your AWS access credentials, w
 
 In this step, you create a new IAM role that enables Amazon Redshift to load data from Amazon S3 buckets. In the next step, you attach the role to your cluster.
 
-## [\*\*To Create an IAM Role for \*\* Amazon Redshift](#to-create-an-iam-role-for--amazon-redshift)
+## [Create an IAM Role for Amazon Redshift](#to-create-an-iam-role-for--amazon-redshift)
 
 1.  Sign in to the AWS Management Console and open the IAM console at [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/).
     
-    ![2019-08-30_18-15](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-15.png)
+    ![2019-08-30_18-15](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-15.png)
     
 2. In the navigation pane, choose **Roles**.
 
@@ -53,11 +53,11 @@ In this step, you create a new IAM role that enables Amazon Redshift to load dat
 
 5. Under **Select your use case**, choose **Redshift - Customizable** then choose **Next: Permissions**.
 
-   ![2019-08-30_18-07](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-07.png)
+   ![2019-08-30_18-07](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-07.png)
 
 6. On the **Attach permissions policies** page, choose **AmazonS3ReadOnlyAccess**. You can leave the default setting for **Set permissions boundary**. Then choose **Next: Tags**.
 
-   ![2019-08-30_18-08](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-08.png)
+   ![2019-08-30_18-08](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-08.png)
 
 7. The **Add tags** page appears. You can optionally add tags. Choose **Next: Review**.
 
@@ -106,24 +106,24 @@ _The cluster that you are about to launch is live (and not running in a sandbox)
 
    Quick Launch automatically creates a default database named **dev**.  
 
-   ![2019-08-30_18-28](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-28.png)
+   ![2019-08-30_18-28](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-28.png)
 
 **Note** 
 _Quick Launch uses the default virtual private cloud (VPC) for your region. If a default VPC doesn't exist, Quick Launch returns an error. If you don't have a default VPC, you can use the standard Launch Cluster wizard to use a different VPC. For more information, see [Creating a Cluster by Using Launch Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)._
 
 5. A confirmation page appears and the cluster takes a few minutes to finish. Choose **Close** to return to the list of clusters. 
 
-   ![2019-08-30_18-33](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-33.png)
+   ![2019-08-30_18-33](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-33.png)
 
-   ![2019-08-30_18-34](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-34.png)
+   ![2019-08-30_18-34](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-34.png)
 
 6. On the Clusters page, choose the cluster that you just launched and review the **Cluster Status** information. Make sure that the **Cluster Status** is **available** and the **Database Health** is **healthy** before you try to connect to the database later in this tutorial. 
 
-   ![2019-08-30_18-37](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-37.png)
+   ![2019-08-30_18-37](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-37.png)
 
 7. On the Clusters page, choose the cluster that you just launched, choose the **Cluster** button, then **Modify cluster**. Choose the **VPC security groups** to associate with this cluster, then choose **Modify** to make the association. Make sure that the **Cluster Properties** displays the **VPC security groups** you chose before continuing to the next step.  
 
-   ![2019-08-30_18-40](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-40.png)
+   ![2019-08-30_18-40](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-40.png)
 
 
 
@@ -139,7 +139,7 @@ In the previous step, you launched your Amazon Redshift cluster. Before you can 
     
 3.  Under **Cluster Properties**, for **VPC Security Groups**, choose your security group. 
     
-    ![2019-08-30_18-46](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-46.png)
+    ![2019-08-30_18-46](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-46.png)
     
 4. After your security group opens in the Amazon EC2 console, choose the **Inbound** tab. 
 
@@ -215,9 +215,9 @@ If you have already created an IAM user to access Amazon Redshift, you can attac
     
 3.  Choose **Add user** or Choose the user that needs access to the Query Editor.
     
-    ![2019-08-30_18-52](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-52.png)
+    ![2019-08-30_18-52](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-52.png)
     
-    ![2019-08-30_18-53](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-53.png)
+    ![2019-08-30_18-53](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-53.png)
     
     
     
@@ -227,19 +227,19 @@ If you have already created an IAM user to access Amazon Redshift, you can attac
 
 6. For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**.
 
-   ![2019-08-30_18-56](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-56.png)
+   ![2019-08-30_18-56](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-56.png)
 
 7. Choose **Next: Review**.
 
 8. Choose **Create user** or **Add permissions**.
 
-   ![2019-08-30_18-57](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-57.png)
+   ![2019-08-30_18-57](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-57.png)
 
 9. Save user **Access key ID** and **Secret access key**
 
    
 
-   ![2019-08-30_18-58](/home/hao/work/teaching/big_data/redshift/2019-08-30_18-58.png)
+   ![2019-08-30_18-58](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_18-58.png)
 
 ### [Using the Query Editor](#using-the-query-editor)
 
@@ -266,11 +266,11 @@ In the following example, you use the Query Editor to perform the following task
     
     * **Password**: Enter the password that you specified when you launched the cluster.
     
-      ![2019-08-30_19-06](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-06.png)
+      ![2019-08-30_19-06](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-06.png)
     
 4.  For **Schema**, choose \*\*public \*\*to create a new table based on that schema. 
     
-    ![2019-08-30_19-07](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-07.png)
+    ![2019-08-30_19-07](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-07.png)
     
 5. Enter the following in the Query Editor window and choose **Run query** to create a new table.
 
@@ -300,7 +300,7 @@ In the following example, you use the Query Editor to perform the following task
 
    You should see the following results. 
 
-   ![2019-08-30_19-10](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-10.png)
+   ![2019-08-30_19-10](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-10.png)
 
 ## [Querying a Database Using a SQL Client](#querying-a-database-using-a-sql-client)
 
@@ -355,7 +355,7 @@ For more information about using the Amazon Redshift JDBC or ODBC drivers, see [
 3.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster. **Note**
     The endpoint for your cluster is not available until the cluster is created and in the available state. 
     
-    ![2019-08-30_19-17](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-17.png)
+    ![2019-08-30_19-17](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-17.png)
 
 ### [To Connect from SQL Workbench/J to Your Cluster](#to-connect-from-sql-workbenchj-to-your-cluster)
 
@@ -365,11 +365,11 @@ This step assumes you installed SQL Workbench/J.
     
 2. Choose **File**, and then choose **Manage Drivers**. The **Manage Drivers** dialog box opens.
 
-   ![2019-08-30_19-21_1](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-21_1.png)
+   ![2019-08-30_19-21_1](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-21_1.png)
 
-   ![2019-08-30_19-22](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-22.png)
+   ![2019-08-30_19-22](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-22.png)
 
-   ![2019-08-30_19-29](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-29.png)
+   ![2019-08-30_19-29](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-29.png)
 
    If the **Please select one driver** dialog box displays, choose **com.amazon.redshift.jdbc4.Driver** or **com.amazon.redshift.jdbc41.Driver** and then choose **OK**. SQL Workbench/J automatically completes the **Classname** box. Keep **Sample URL** blank, and choose **OK**.
 
@@ -391,7 +391,7 @@ This step assumes you installed SQL Workbench/J.
 
 11. Choose **OK**.  
 
-    ![2019-08-30_19-37](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-37.png)
+    ![2019-08-30_19-37](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-37.png)
 
 12. Enter the following command in the query window and choose **SQL**, **Execute Current** to add rows to the table.
 
@@ -507,12 +507,12 @@ After you complete this step, you can find more information about Amazon Redshif
         saletime timestamp);
     ```
     
-    ![2019-08-30_19-41](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-41.png)
+    ![2019-08-30_19-41](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-41.png)
     
 2. Load sample data from Amazon S3 by using the COPY command. 
 
 **Note**
-​We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3              or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide_.
+​_We recommend using the COPY command to load large datasets into Amazon Redshift from Amazon S3              or DynamoDB. For more information about COPY syntax, see [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) in the _Amazon Redshift Database Developer Guide._
 ​    
 
 The sample data for this tutorial is provided in an Amazon S3 bucket that is owned by Amazon Redshift. The bucket permissions are configured to allow all authenticated AWS users read access to the sample data files.
@@ -522,7 +522,7 @@ To load the sample data, you must provide authentication for your cluster to acc
 For this step, you provide authentication by referencing the IAM role that you created and then attached to your cluster in previous steps. 
 
 **Note**
-If you don't have proper permissions to access Amazon S3, you receive the following error message when running the COPY command: `S3ServiceException: Access Denied`.
+_If you don't have proper permissions to access Amazon S3, you receive the following error message when running the COPY command: `S3ServiceException: Access Denied`._
 
 The COPY commands include a placeholder for the Amazon Resource Name (ARN) for the IAM role, as shown in the following example.
 
@@ -611,18 +611,18 @@ delimiter '\t' timeformat 'MM/DD/YYYY HH:MI:SS' region 'us-west-2';
     
 2.  (Optional) Open the Amazon Redshift console to review the queries that you ran. The **Queries** tab shows a list of queries that you ran over a time period you specify. By default, the console displays queries that have executed in the last 24 hours, including currently executing queries.
     
-    1.  Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console.aws.amazon.com/redshift/](https://console.aws.amazon.com/redshift/).
-        
-    2.  In the cluster list in the right pane, choose `redshift-cluster-<NetID>`.
-        
-    3.  Choose the **Queries** tab.
-        
+    *  Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console.aws.amazon.com/redshift/](https://console.aws.amazon.com/redshift/).
+       
+    *  In the cluster list in the right pane, choose `redshift-cluster-<NetID>`.
+       
+    *  Choose the **Queries** tab.
+       
         The console displays list of queries you ran, as shown in the example following.  
         
         ![1567138663-fff5a9fa5dc1904e959bc21c2e4e359b](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138663-fff5a9fa5dc1904e959bc21c2e4e359b.png)
         
-    4.  To view more information about a query, choose the query ID link in the **Query** column or choose the magnifying glass icon.
-        
+    *  To view more information about a query, choose the query ID link in the **Query** column or choose the magnifying glass icon.
+       
         The following example shows the details of a query you ran in a previous step.  
         
         ![1567138663-039a6410688dc9666a1ce41fdcf13993](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138663-039a6410688dc9666a1ce41fdcf13993.png)
@@ -684,11 +684,11 @@ When you have completed this tutorial, you should reset your environment to the 
     
 4. In the **Delete Cluster** window, for **Create snapshot**, choose **No** and then choose **Delete**.  
 
-   ![2019-08-30_21-26](/home/hao/work/teaching/big_data/redshift/2019-08-30_21-26.png)
+   ![2019-08-30_21-26](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_21-26.png)
 
 5. On the cluster details window, the **Cluster Status** displays that the cluster is being deleted. 
 
-   ![2019-08-30_21-27](/home/hao/work/teaching/big_data/redshift/2019-08-30_21-27.png)
+   ![2019-08-30_21-27](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_21-27.png)
    
    ![1567138801-bf08a1a1a746936e4907e4b10f5019c3](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/1567138801-bf08a1a1a746936e4907e4b10f5019c3.png)
 
@@ -698,15 +698,15 @@ When you have completed this tutorial, you should reset your environment to the 
 
 1. Query editor
 
-   ![2019-08-30_19-10](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-10.png)
+   ![2019-08-30_19-10](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-10.png)
 
 2. SQL workbench
 
-   ![2019-08-30_19-46](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-46.png)
+   ![2019-08-30_19-46](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-46.png)
 
 3. Details of the most recent query
 
-   ![2019-08-30_19-48](/home/hao/work/teaching/big_data/redshift/2019-08-30_19-48.png)
+   ![2019-08-30_19-48](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-48.png)
 
 
 
