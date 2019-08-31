@@ -13,7 +13,7 @@ Amazon Redshift engine and contains one or more databases.
 Before you begin setting up an Amazon Redshift cluster, make sure that you complete the following prerequisites in this section:
 
 *   [Sign Up for AWS](#rs-gsg-prereq-signup)
-*   [Determine Firewall Rules](#rs-gsg-prereq-firewall-rules)
+*   [Install SQL Workbench]()
 
 ## [Sign Up for AWS Educate](#sign-up-for-aws)
 
@@ -24,11 +24,16 @@ If you don’t already have an AWS account, you must sign up for one.
 
 Then you can log in [AWS Management Console](https://console.aws.amazon.com/)
 
-## [Determine Firewall Rules](#determine-firewall-rules)
+## [Install SQL Workbench](#install-sql-workbench)
+SQL workbench is a GUI client to connect SQL databases. We will use it to connect AWS redshift database (PostgreSQL). You can install it following [To Install SQL Workbench/J on Your Client Computer](#to-install-sql-workbenchj-on-your-client-computer)  or just download it from [sql workbench via google drive](https://drive.google.com/file/d/1B-s_MwWwDXfIxECOyIuaKv4v9_2oP6Ld/view?usp=sharing)
 
-As part of this tutorial, you specify a port when you launch your Amazon Redshift cluster. You also create an inbound ingress rule in a security group to allow access through the port to your cluster.
+* Download it and uncompress it, enter the folder.
 
-If your client computer is behind a firewall, you need to know an open port that you can use. This open port enables you to connect to the cluster from a SQL client tool and run queries. If you do not know this, you should work with someone who understands your network firewall rules to determine an open port in your firewall. Though Amazon Redshift uses port 5439 by default, the connection doesn't work if that port is not open in your firewall. You can't change the port number for your Amazon Redshift cluster after it is created. Thus, make sure that you specify an open port that works in your environment during the launch process.
+* Uncompress OpenJDK for your OS locally.
+
+  ![openjdk](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/openjdk.png)
+
+* Open SQL Workbench by double clicking `sqlworkbench.cmd` for Windows or run ` sh sqlworkbench.sh` in terminal for Macos/Linux. 
 
 
 # [Step 2: Create an IAM Role](#step-2-create-an-iam-role)
