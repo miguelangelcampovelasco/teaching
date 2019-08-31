@@ -5,7 +5,7 @@ computing resources called nodes, which are organized into a group called a clus
 Amazon Redshift engine and contains one or more databases.
 
 
-[toc]
+[TOC]
 
 
 # [Step 1: Set Up Prerequisites](#step-1-set-up-prerequisites)
@@ -694,7 +694,7 @@ When you have completed this tutorial, you should reset your environment to the 
 
 
 
-# [Screenshots](#screenshots)
+# [Screenshots for submission](#screenshots)
 
 1. Query editor
 
