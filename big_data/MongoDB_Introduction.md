@@ -40,7 +40,7 @@ The following are the different types of NoSQL databases:
 MongoDB is a document database designed for ease of development and scaling.  
 A record in MongoDB is a document, which is a data structure composed of field and value pairs. MongoDB documents are similar to JSON objects. The values of fields may include other documents, arrays, and arrays of documents.
 
-![1567306477-74b398457ab57bd38be0c517383c73ce](/home/hao/work/teaching/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
+![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
 
 The advantages of using documents are:
 
@@ -112,7 +112,7 @@ In addition, MongoDB provides pluggable storage engine API that allows third par
 ### Documents
 MongoDB stores data records as BSON documents. BSON is a binary representation of [JSON](https://docs.mongodb.com/manual/reference/glossary/#term-json) documents, though it contains more data types than JSON. For the BSON spec, see [bsonspec.org](http://bsonspec.org/). See also [BSON Types](https://docs.mongodb.com/manual/reference/bson-types/).
 
-![1567306477-74b398457ab57bd38be0c517383c73ce](/home/hao/work/teaching/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
+![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
 
 #### Document Structure
 
@@ -309,15 +309,15 @@ If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/ma
 2. Open MongoDB Compass, log in with your account:
    username: `<NetID>`, password:`<NetID>123`
 
-![2019-09-01_11-14](/home/hao/work/teaching/big_data/mongodb/2019-09-01_11-14.png)
+![2019-09-01_11-14](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_11-14.png)
 
 ### MongoDB Create Database
 
 1. At the bottom of left sidebar, click '+' to create a new database.
 
-![2019-09-01_12-00](/home/hao/work/teaching/big_data/mongodb/2019-09-01_12-00.png)
+![2019-09-01_12-00](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_12-00.png)
 
-![2019-09-01_12-00_1](/home/hao/work/teaching/big_data/mongodb/2019-09-01_12-00_1.png)
+![2019-09-01_12-00_1](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_12-00_1.png)
 
 2. Permission of your account '<NetID>' is limited to Northwind (read) and bigdata_<NetID>(read and write), so you can not create a new database here.
 
@@ -327,9 +327,9 @@ If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/ma
 
 2. Choose `CREATE COLLECTION`, input `inventory` as Collection Name.
 
-![2019-09-01_15-53](/home/hao/work/teaching/big_data/mongodb/2019-09-01_15-53.png)
+![2019-09-01_15-53](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_15-53.png)
 
-![2019-09-01_15-53_1](/home/hao/work/teaching/big_data/mongodb/2019-09-01_15-53_1.png)
+![2019-09-01_15-53_1](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_15-53_1.png)
 
 
 
@@ -337,7 +337,7 @@ If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/ma
 
 1. From the **Collections** tab, click the `test_collection` collection.
 
-   ![2019-09-01_15-56](/home/hao/work/teaching/big_data/mongodb/2019-09-01_15-56.png)
+   ![2019-09-01_15-56](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_15-56.png)
 
 2. Insert the following [document](https://docs.mongodb.com/manual/core/document/) by entering the `fields` and `values`, then selecting the appropriate types from the dropdowns. Add fields by clicking the last line number, then clicking **Add Field After ….**
 
@@ -349,11 +349,11 @@ If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/ma
 *   For `Object` types, add nested fields by clicking the last field’s number and selecting Add Field After ….
 *   For `Array` types, add additional elements to the array by clicking the last element’s line number and selecting Add Array Element After ….
 
-![1567365708-a0ba4b9f70979c77f7bbdd574b7b71c7](/home/hao/work/teaching/big_data/mongodb/1567365708-a0ba4b9f70979c77f7bbdd574b7b71c7.png)
+![1567365708-a0ba4b9f70979c77f7bbdd574b7b71c7](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567365708-a0ba4b9f70979c77f7bbdd574b7b71c7.png)
 
-![1567365708-58d28db3cee8a5546fc392c7cdf64a6b](/home/hao/work/teaching/big_data/mongodb/1567365708-58d28db3cee8a5546fc392c7cdf64a6b.png)
+![1567365708-58d28db3cee8a5546fc392c7cdf64a6b](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567365708-58d28db3cee8a5546fc392c7cdf64a6b.png)
 
-![2019-09-01_12-35](/home/hao/work/teaching/big_data/mongodb/2019-09-01_12-35.png)
+![2019-09-01_12-35](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_12-35.png)
 
 ### MongoDB Query
 
@@ -369,7 +369,7 @@ Copy the following filter into the Compass query bar and click Find:
 { status: "D" }
 ```
 
-![2019-09-01_16-01](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-01.png)
+![2019-09-01_16-01](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-01.png)
 
 * #### Match embedded documents
 
@@ -379,7 +379,7 @@ Equality matches on the whole embedded document require an _exact_ match of the 
   { size: { h: 14, w: 21, uom: "cm" } }
   ```
 
-![2019-09-01_16-04](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-04.png)
+![2019-09-01_16-04](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-04.png)
 
 The following example selects all documents where the field `uom` nested in the `size` field equals the string value `"in"`:
 
@@ -434,13 +434,13 @@ In the following example, the compound query document selects all documents in t
 { status: "A", $or: [ { qty: { $lt: 30 } }, { "$regex": "^p" } ] }
 ```
 
-![2019-09-01_16-33](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-33.png)
+![2019-09-01_16-33](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-33.png)
 
 * #### Query with limit
 
 Click **Options**, set **LIMIT** as 1, click **FIND**
 
-![2019-09-01_16-35](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-35.png)
+![2019-09-01_16-35](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-35.png)
 
 * #### Query with Project
 
@@ -450,13 +450,13 @@ Click **RESET** then **Options**, set **Project** as:
 { item: 1, qty: 1 }
 ```
 
-![2019-09-01_16-40](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-40.png)
+![2019-09-01_16-40](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-40.png)
 
 ```javasc
 { size: 0, status: 0 }
 ```
 
-![2019-09-01_16-41](/home/hao/work/teaching/big_data/mongodb/2019-09-01_16-41.png)
+![2019-09-01_16-41](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-41.png)
 
 
 
@@ -475,7 +475,7 @@ try examples:
 { qty: -1, status: 1 }
 ```
 
-![2019-09-01_17-37](/home/hao/work/teaching/big_data/mongodb/2019-09-01_17-37.png)
+![2019-09-01_17-37](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_17-37.png)
 
 
 
@@ -485,11 +485,11 @@ try examples:
 
 To update a document in Compass, hover over the target document and click the pencil icon:
 
-![1567384785-fa99544a1efb00b1ad4859ec02c11046](/home/hao/work/teaching/big_data/mongodb/1567384785-fa99544a1efb00b1ad4859ec02c11046.png)
+![1567384785-fa99544a1efb00b1ad4859ec02c11046](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-fa99544a1efb00b1ad4859ec02c11046.png)
 
 After clicking the pencil icon, the document enters edit mode:
 
-![1567384785-7a29355f4ed7125715b91d48b0ae3d8a](/home/hao/work/teaching/big_data/mongodb/1567384785-7a29355f4ed7125715b91d48b0ae3d8a.png)
+![1567384785-7a29355f4ed7125715b91d48b0ae3d8a](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-7a29355f4ed7125715b91d48b0ae3d8a.png)
 
 You can now change the this document by clicking the item you wish to change and modifying the value.
 
@@ -511,7 +511,7 @@ Modify the target document as follows:
 
 1.  Click the Table button in the top navigation to access the [Table View](https://docs.mongodb.com/compass/current/documents/#documents-table-view "(in compass vmaster)"):
     
-    ![1567384785-c80d1be2a4f6243354f137c59453ff9a](/home/hao/work/teaching/big_data/mongodb/1567384785-c80d1be2a4f6243354f137c59453ff9a.png)
+    ![1567384785-c80d1be2a4f6243354f137c59453ff9a](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-c80d1be2a4f6243354f137c59453ff9a.png)
     
 2.  Use the Compass [query bar](https://docs.mongodb.com/compass/current/query/filter/#query-bar-filter "(in compass vmaster)") to locate the target document.
     
@@ -521,11 +521,11 @@ Modify the target document as follows:
     { item: "paper" }
     ```
     
-    ![1567384785-bda1915b24a5833c85c84d3eed03a782](/home/hao/work/teaching/big_data/mongodb/1567384785-bda1915b24a5833c85c84d3eed03a782.png)
+    ![1567384785-bda1915b24a5833c85c84d3eed03a782](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-bda1915b24a5833c85c84d3eed03a782.png)
     
 3.  Hover over the `status` field and click the pencil icon which appears on the right side of the document to enter edit mode:
     
-    ![1567384785-ccebb99ba25ef37a9cf1ad92a3feb616](/home/hao/work/teaching/big_data/mongodb/1567384785-ccebb99ba25ef37a9cf1ad92a3feb616.png)
+    ![1567384785-ccebb99ba25ef37a9cf1ad92a3feb616](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-ccebb99ba25ef37a9cf1ad92a3feb616.png)
     
 4.  Change the value of the field to `"P"`.
     
@@ -533,23 +533,23 @@ Modify the target document as follows:
     
 6.  Hover over the `size` field and click the outward-pointing arrows which appear on the right side of the field. This opens a new tab which displays the fields within the `size` object:
     
-    ![1567384785-aa6d741a238d892476b536ddaaf4b438](/home/hao/work/teaching/big_data/mongodb/1567384785-aa6d741a238d892476b536ddaaf4b438.png)
+    ![1567384785-aa6d741a238d892476b536ddaaf4b438](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-aa6d741a238d892476b536ddaaf4b438.png)
     
 7.  Using the same process outlined in steps 3-5 for editing the `status` field, change the value of the `size.uom` field to `"cm"`.
     
 8.  Click the left-most tab above the table labelled `inventory` to return to the original table view, which displays the top-level document:
     
-    ![1567384785-b0d36217b52e2e73bd80891ae3716482](/home/hao/work/teaching/big_data/mongodb/1567384785-b0d36217b52e2e73bd80891ae3716482.png)
+    ![1567384785-b0d36217b52e2e73bd80891ae3716482](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-b0d36217b52e2e73bd80891ae3716482.png)
     
 9.  Hover over the `status` field and click the pencil icon which appears on the right side of the document to re-enter edit mode.
     
 10.  Click inside of the `status` field and click the plus button icon which appears in the edit menu.
     Click the Add Field After status button which appears below the plus button:
     
-    ![1567384785-23b60016b65d5870e117e7986cd787bb](/home/hao/work/teaching/big_data/mongodb/1567384785-23b60016b65d5870e117e7986cd787bb.png)
+    ![1567384785-23b60016b65d5870e117e7986cd787bb](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-23b60016b65d5870e117e7986cd787bb.png)
     
 11.  Add a new field called `lastModified` with a value of today’s date. Set the field type to `Date`:
-        ![1567384785-80fb4ac39d05c94d3c104094d29eac76](/home/hao/work/teaching/big_data/mongodb/1567384785-80fb4ac39d05c94d3c104094d29eac76.png)
+        ![1567384785-80fb4ac39d05c94d3c104094d29eac76](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567384785-80fb4ac39d05c94d3c104094d29eac76.png)
     
 12.  Click the Update button below the field to save your changes.
     
@@ -564,7 +564,7 @@ MongoDB Compass provides a simple way to delete a document from a collection. Th
 
 1.  Click the Table button in the top navigation to access the [Table View](https://docs.mongodb.com/compass/current/documents/#documents-table-view "(in compass vmaster)"):
     
-    ![1567385579-c54023307ac836d5c6d159ae1e3756cd](/home/hao/work/teaching/big_data/mongodb/1567385579-c54023307ac836d5c6d159ae1e3756cd.png)
+    ![1567385579-c54023307ac836d5c6d159ae1e3756cd](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567385579-c54023307ac836d5c6d159ae1e3756cd.png)
     
 2.  Use the Compass [query bar](https://docs.mongodb.com/compass/current/query/filter/#query-bar-filter "(in compass vmaster)") to locate the target document.
     
@@ -574,17 +574,17 @@ MongoDB Compass provides a simple way to delete a document from a collection. Th
     { item: "paper" }
     ```
     
-    ![1567385579-8a1b381606f8097ad4be6145ef1863c0](/home/hao/work/teaching/big_data/mongodb/1567385579-8a1b381606f8097ad4be6145ef1863c0.png)
+    ![1567385579-8a1b381606f8097ad4be6145ef1863c0](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567385579-8a1b381606f8097ad4be6145ef1863c0.png)
     
      
     
 3.  Hover over the document and click the trash icon which appears on the right-hand side:
     
-      ![1567385579-e72fb95147f6f1c7265613c09151c3ca](/home/hao/work/teaching/big_data/mongodb/1567385579-e72fb95147f6f1c7265613c09151c3ca.png)
+      ![1567385579-e72fb95147f6f1c7265613c09151c3ca](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567385579-e72fb95147f6f1c7265613c09151c3ca.png)
     
     After clicking the delete button, the document is flagged for deletion and Compass asks for confirmation that you want to remove the document:
     
-    ![1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0](/home/hao/work/teaching/big_data/mongodb/1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0.png)
+    ![1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0.png)
     
 4.  Click Delete to confirm. Compass deletes the document from the collection.
 
@@ -592,7 +592,7 @@ MongoDB Compass provides a simple way to delete a document from a collection. Th
 
 Click database `bigdata_<NetID>` , click the delete button at end of the collection:
 
-![2019-09-01_18-02](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-02.png)
+![2019-09-01_18-02](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_18-02.png)
 
 
 
@@ -602,11 +602,11 @@ Click database `bigdata_<NetID>` , click the delete button at end of the collect
 
 Choose **bigdata_<NetID>** -> **inventory**, click **Aggregations**:
 
-![2019-09-01_18-42](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-42.png)
+![2019-09-01_18-42](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_18-42.png)
 
 In the stage box, select `$count`, rename it as `"total_documents"`, which shows total number of documents
 
-![2019-09-01_18-45](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-45.png)
+![2019-09-01_18-45](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_18-45.png)
 
 In the following example, group all documents by `status`, sum all `qty` for each status
 
@@ -619,7 +619,7 @@ In the following example, group all documents by `status`, sum all `qty` for eac
 }
 ```
 
-![2019-09-01_19-55](/home/hao/work/teaching/big_data/mongodb/2019-09-01_19-55.png)
+![2019-09-01_19-55](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_19-55.png)
 
 You can find more aggregation operators from [https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators](https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators)
 
