@@ -481,7 +481,82 @@ try examples:
 
 ### MongoDB Update
 
+##### Update Documents in a Collection
 
+To update a document in Compass, hover over the target document and click the pencil icon:
+
+![1567384785-fa99544a1efb00b1ad4859ec02c11046](/home/hao/work/teaching/big_data/mongodb/1567384785-fa99544a1efb00b1ad4859ec02c11046.png)
+
+After clicking the pencil icon, the document enters edit mode:
+
+![1567384785-7a29355f4ed7125715b91d48b0ae3d8a](/home/hao/work/teaching/big_data/mongodb/1567384785-7a29355f4ed7125715b91d48b0ae3d8a.png)
+
+You can now change the this document by clicking the item you wish to change and modifying the value.
+
+For detailed instructions on updating documents in Compass, refer to the [Compass documentation](https://docs.mongodb.com/compass/current/documents/#compass-modify-documents "(in compass vmaster)") or follow the [example](#write-op-updateone) below.
+
+Once you are satisfied with your changes, click **Update** to save the updated document.
+
+Click **Cancel** to revert any modifications made to the document and exit edit mode.
+
+##### Update a Single Document
+
+The following example demonstrates using MongoDB Compass to modify a single document where `item: paper` in the `inventory` collection:
+
+Modify the target document as follows:
+
+*   Change the `status` field from `D` to `P`.
+*   Change the `size.uom` field from `in` to `cm`.
+*   Add a new field called `lastModified` whose value will be today’s date.
+
+1.  Click the Table button in the top navigation to access the [Table View](https://docs.mongodb.com/compass/current/documents/#documents-table-view "(in compass vmaster)"):
+    
+    ![1567384785-c80d1be2a4f6243354f137c59453ff9a](/home/hao/work/teaching/big_data/mongodb/1567384785-c80d1be2a4f6243354f137c59453ff9a.png)
+    
+2.  Use the Compass [query bar](https://docs.mongodb.com/compass/current/query/filter/#query-bar-filter "(in compass vmaster)") to locate the target document.
+    
+    Copy the following filter document into the query bar and click Find:
+    
+    ```javascript
+    { item: "paper" }
+    ```
+    
+    ![1567384785-bda1915b24a5833c85c84d3eed03a782](/home/hao/work/teaching/big_data/mongodb/1567384785-bda1915b24a5833c85c84d3eed03a782.png)
+    
+3.  Hover over the `status` field and click the pencil icon which appears on the right side of the document to enter edit mode:
+    
+    ![1567384785-ccebb99ba25ef37a9cf1ad92a3feb616](/home/hao/work/teaching/big_data/mongodb/1567384785-ccebb99ba25ef37a9cf1ad92a3feb616.png)
+    
+4.  Change the value of the field to `"P"`.
+    
+5.  Click the Update button below the field to save your changes.
+    
+6.  Hover over the `size` field and click the outward-pointing arrows which appear on the right side of the field. This opens a new tab which displays the fields within the `size` object:
+    
+    ![1567384785-aa6d741a238d892476b536ddaaf4b438](/home/hao/work/teaching/big_data/mongodb/1567384785-aa6d741a238d892476b536ddaaf4b438.png)
+    
+7.  Using the same process outlined in steps 3-5 for editing the `status` field, change the value of the `size.uom` field to `"cm"`.
+    
+8.  Click the left-most tab above the table labelled `inventory` to return to the original table view, which displays the top-level document:
+    
+    ![1567384785-b0d36217b52e2e73bd80891ae3716482](/home/hao/work/teaching/big_data/mongodb/1567384785-b0d36217b52e2e73bd80891ae3716482.png)
+    
+9.  Hover over the `status` field and click the pencil icon which appears on the right side of the document to re-enter edit mode.
+    
+10.  Click inside of the `status` field and click the plus button icon which appears in the edit menu.
+    Click the Add Field After status button which appears below the plus button:
+    
+    ![1567384785-23b60016b65d5870e117e7986cd787bb](/home/hao/work/teaching/big_data/mongodb/1567384785-23b60016b65d5870e117e7986cd787bb.png)
+    
+11.  Add a new field called `lastModified` with a value of today’s date. Set the field type to `Date`:
+        ![1567384785-80fb4ac39d05c94d3c104094d29eac76](/home/hao/work/teaching/big_data/mongodb/1567384785-80fb4ac39d05c94d3c104094d29eac76.png)
+    
+12.  Click the Update button below the field to save your changes.
+    
+
+**note**
+
+Once set `_id` field, you cannot update the value of the `_id` field nor can you replace an existing document with a replacement document that has a different `_id` field value.
 
 
 
