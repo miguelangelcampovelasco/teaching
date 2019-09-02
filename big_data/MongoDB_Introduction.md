@@ -1,13 +1,13 @@
 [TOC]
 
-# Prerequisites
+# 0. Prerequisites
 
 * Install MongoDB Compass (Community Edition Stable)  from [https://www.mongodb.com/download-center/compass](https://www.mongodb.com/download-center/compass)
 * Install Anaconda (Python 3.7 version) from [anaconda download](https://www.anaconda.com/distribution/#download-section) following [anaconda installation](https://docs.anaconda.com/anaconda/install/)
 * Install MongoDB python driver `pymongo`,  open Anaconda Prompt for windows or Terminal for MacOS/Linux, exercute `pip install -U pymongo`
 
 
-# Introduction to MongoDB
+# 1. Introduction to MongoDB
 
 MongoDB is a leading open-source NoSQL database that is written in C++. This tutorial will give the reader a better understanding of MongoDB concepts.
 
@@ -40,7 +40,7 @@ The following are the different types of NoSQL databases:
 MongoDB is a document database designed for ease of development and scaling.  
 A record in MongoDB is a document, which is a data structure composed of field and value pairs. MongoDB documents are similar to JSON objects. The values of fields may include other documents, arrays, and arrays of documents.
 
-![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
+![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.png)
 
 The advantages of using documents are:
 
@@ -112,7 +112,7 @@ In addition, MongoDB provides pluggable storage engine API that allows third par
 ### Documents
 MongoDB stores data records as BSON documents. BSON is a binary representation of [JSON](https://docs.mongodb.com/manual/reference/glossary/#term-json) documents, though it contains more data types than JSON. For the BSON spec, see [bsonspec.org](http://bsonspec.org/). See also [BSON Types](https://docs.mongodb.com/manual/reference/bson-types/).
 
-![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.svg)
+![1567306477-74b398457ab57bd38be0c517383c73ce](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/1567306477-74b398457ab57bd38be0c517383c73ce.png)
 
 #### Document Structure
 
@@ -299,7 +299,7 @@ If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/ma
 
 
 
-# MongoDB  GUI client
+# 2. MongoDB  GUI client
 [MongoDB Compass](https://docs.mongodb.com/compass/current/) is the GUI for MongoDB. The following tutorial uses MongoDB Compass to  connect to MonogoDB server and  perform mutiple operations.
 
 ### MongoDB Connect
@@ -621,12 +621,45 @@ In the following example, group all documents by `status`, sum all `qty` for eac
 
 ![2019-09-01_19-55](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_19-55.png)
 
+In the following example, group all documents by status, count total number of documents for each status
+
+```javascript
+{
+  _id: {status:'$status'},
+  total_qty: {
+    $sum: 1
+  }
+}
+```
+
+![2019-09-02_10-54](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-02_10-54.png)
+
 You can find more aggregation operators from [https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators](https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators)
 
 
-# MongoDB and Python
+
+# 3. MongoDB and Python
+
+The official Python MongoDB driver is called [PyMongo](https://pypi.org/project/pymongo/). We can install it using pip as shown below:
+
+`pip install pymongo`
+
+Please delete collections in `bigdata_<NetID>` before we start.
+
+![2019-09-02_11-19](/home/hao/work/teaching/big_data/mongodb/2019-09-02_11-19.png)
 
 ### MongoDB Connect
+
+```python
+from pymongo import MongoClient
+
+#
+user = "<NetID>"
+password = f"{user}123"
+uri = f"mongodb://{user}:{password}@liuhoward.tk:27017"
+
+user_client = MongoClient(user_uri)
+```
 
 
 
@@ -634,9 +667,66 @@ You can find more aggregation operators from [https://docs.mongodb.com/manual/re
 
 ### MongoDB Create Database
 
+**Important:** In MongoDB, a database is not created until it gets content!
+
+```python
+# we could print existing databases
+print(user_client.list_database_names())
+```
+
+```python
+# three ways to create database
+
+# get_database()
+user_db = user_client.get_database(f'bigdata_{user}')
+
+# user_client as dictionary of name->database
+#user_db = user_client[f'bigdata_{user}']
+
+# use dot notation, attribute style
+#user_db = user_client.bigdata_liuhao16
+
+```
+
+
+
 ### MongoDB Create Collection
 
+```python
+user_col = user_db.get_collection("inventory")
+```
+
 ### MongoDB Insert
+
+```python
+first_document = {"item": "journal", "qty": 25,"size": {"h": 14, "w": 21, "uom": "cm"},"status": "A"}
+
+
+user_col.insert_one(first_document)
+
+
+
+```
+
+```python
+inventory_list = [
+    {"item": "canvas", "qty": 100, "size": {"h": 28, "w": 35.5, "uom": "cm"}, "status": "A"},
+    {"item": "mat","qty": 85,"size": {"h": 27.9, "w": 35.5, "uom": "cm"},"status": "A"},
+    {"item": "mousepad","qty": 25,"size": {"h": 19, "w": 22.85, "uom": "cm"},"status": "P"},
+    {"item": "notebook","qty": 50,"size": {"h": 8.5, "w": 11, "uom": "in"},"status": "P"},
+    {"item": "paper","qty": 100,"size": {"h": 8.5, "w": 11, "uom": "in"},"status": "D"},
+    {"item": "planner","qty": 75,"size": {"h": 22.85, "w": 30, "uom": "cm"},"status": "D"},
+    {"item": "postcard","qty": 45,"size": {"h": 10, "w": 15.25, "uom": "cm"},"status": "A"},
+    {"item": "sketchbook","qty": 80,"size": {"h": 14, "w": 21, "uom": "cm"},"status": "A"},
+    {"item": "sketch pad","qty": 95,"size": {"h": 22.85, "w": 30.5, "uom": "cm"},"status": "A"}
+]
+
+user_col.insert_many(inventory_list)
+```
+
+
+
+
 
 ### MongoDB Query
 
@@ -994,8 +1084,4 @@ print(user.id, user.email, user.first_name, user.last_name)
 5ba5c3bf2e8ca029163417fc connect@derrickmwiti.com Derrick Mwiti
 ```
 
-## Conclusion
 
-In this tutorial, we have learned how we can use MongoDB in Python. We've also introduced `mongoengine`, an Object Document Mapper that makes it easier for us to interact with MongoDB in Python. In addition, we covered how to create and manipulate documents using pymongo and mongoengine. You can learn more about [MongoDB](https://docs.mongodb.com/), [pymomgo](http://api.mongodb.com/python/current/) and, [mongoengine](http://docs.mongoengine.org/guide/index.html) by visiting their official documentations.
-
-If you would like to learn more about manipulating data in Python, take DataCamp's [Importing Data in Python (Part 1)](https://www.datacamp.com/courses/importing-data-in-python-part-1) course.
