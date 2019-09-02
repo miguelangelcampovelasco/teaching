@@ -558,30 +558,79 @@ Modify the target document as follows:
 
 Once set `_id` field, you cannot update the value of the `_id` field nor can you replace an existing document with a replacement document that has a different `_id` field value.
 
-
-
 ### MongoDB Delete
 
-### 
+MongoDB Compass provides a simple way to delete a document from a collection. The following example shows how to delete the document with `item` equal to `paper` from the `inventory` collection:
+
+1.  Click the Table button in the top navigation to access the [Table View](https://docs.mongodb.com/compass/current/documents/#documents-table-view "(in compass vmaster)"):
+    
+    ![1567385579-c54023307ac836d5c6d159ae1e3756cd](/home/hao/work/teaching/big_data/mongodb/1567385579-c54023307ac836d5c6d159ae1e3756cd.png)
+    
+2.  Use the Compass [query bar](https://docs.mongodb.com/compass/current/query/filter/#query-bar-filter "(in compass vmaster)") to locate the target document.
+    
+    Copy the following filter document into the query bar and click Find:
+    
+    ```javascript
+    { item: "paper" }
+    ```
+    
+    ![1567385579-8a1b381606f8097ad4be6145ef1863c0](/home/hao/work/teaching/big_data/mongodb/1567385579-8a1b381606f8097ad4be6145ef1863c0.png)
+    
+     
+    
+3.  Hover over the document and click the trash icon which appears on the right-hand side:
+    
+      ![1567385579-e72fb95147f6f1c7265613c09151c3ca](/home/hao/work/teaching/big_data/mongodb/1567385579-e72fb95147f6f1c7265613c09151c3ca.png)
+    
+    After clicking the delete button, the document is flagged for deletion and Compass asks for confirmation that you want to remove the document:
+    
+    ![1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0](/home/hao/work/teaching/big_data/mongodb/1567385579-1e2c2e450a0fbc7c269fb3885c6e8ab0.png)
+    
+4.  Click Delete to confirm. Compass deletes the document from the collection.
 
 ### MongoDB Drop Collection
 
+Click database `bigdata_<NetID>` , click the delete button at end of the collection:
+
+![2019-09-01_18-02](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-02.png)
+
+
+
 ### MongoDB Aggregation
 
+[Aggregation](https://docs.mongodb.com/manual/aggregation/) operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result.
 
+Choose **bigdata_<NetID>** -> **inventory**, click **Aggregations**:
 
+![2019-09-01_18-42](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-42.png)
 
+In the stage box, select `$count`, rename it as `"total_documents"`, which shows total number of documents
 
+![2019-09-01_18-45](/home/hao/work/teaching/big_data/mongodb/2019-09-01_18-45.png)
 
+In the following example, group all documents by `status`, sum all `qty` for each status
 
+```json
+{
+  _id: {status:'$status'},
+  total_qty: {
+    $sum: '$qty'
+  }
+}
+```
 
+![2019-09-01_19-55](/home/hao/work/teaching/big_data/mongodb/2019-09-01_19-55.png)
 
-
+You can find more aggregation operators from [https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators](https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators)
 
 
 # MongoDB and Python
 
 ### MongoDB Connect
+
+
+
+
 
 ### MongoDB Create Database
 
