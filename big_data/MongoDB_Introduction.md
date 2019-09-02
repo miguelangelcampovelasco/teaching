@@ -1,11 +1,8 @@
-[TOC]
-
 # 0. Prerequisites
 
 * Install MongoDB Compass (Community Edition Stable)  from [https://www.mongodb.com/download-center/compass](https://www.mongodb.com/download-center/compass)
 * Install Anaconda (Python 3.7 version) from [anaconda download](https://www.anaconda.com/distribution/#download-section) following [anaconda installation](https://docs.anaconda.com/anaconda/install/)
 * Install MongoDB python driver `pymongo`,  open Anaconda Prompt for windows or Terminal for MacOS/Linux, exercute `pip install -U pymongo`
-
 
 # 1. Introduction to MongoDB
 
@@ -297,8 +294,6 @@ To determine a field’s type, see [Check Types in the mongo Shell](https://docs
 
 If you convert BSON to JSON, see the [Extended JSON](https://docs.mongodb.com/manual/reference/mongodb-extended-json/) reference.
 
-
-
 # 2. MongoDB  GUI client
 [MongoDB Compass](https://docs.mongodb.com/compass/current/) is the GUI for MongoDB. The following tutorial uses MongoDB Compass to  connect to MonogoDB server and  perform mutiple operations.
 
@@ -431,7 +426,7 @@ In the following example, the compound query document selects all documents in t
 { status: "A", $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ] }
 ```
 ```javascript
-{ status: "A", $or: [ { qty: { $lt: 30 } }, { "$regex": "^p" } ] }
+{ status: "A", $or: [ { qty: { $lt: 30 } }, {item: { "$regex": "^p" } }] }
 ```
 
 ![2019-09-01_16-33](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-01_16-33.png)
@@ -637,42 +632,38 @@ In the following example, group all documents by status, count total number of d
 You can find more aggregation operators from [https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators](https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-expression-operators)
 
 
-
 # 3. MongoDB and Python
 
 The official Python MongoDB driver is called [PyMongo](https://pypi.org/project/pymongo/). We can install it using pip as shown below:
 
 `pip install pymongo`
 
-Please delete collections in `bigdata_<NetID>` before we start.
+Please delete collections in `bigdata_<NetID>` and disconnect before we start.
 
-![2019-09-02_11-19](/home/hao/work/teaching/big_data/mongodb/2019-09-02_11-19.png)
+![2019-09-02_11-19](https://github.com/liuhoward/teaching/raw/master/big_data/mongodb/2019-09-02_11-19.png)
 
-### MongoDB Connect
 
 ```python
 from pymongo import MongoClient
 
-#
-user = "<NetID>"
+# set your NetID as user name
+user = "liuhao16" "<NetID>"
 password = f"{user}123"
 uri = f"mongodb://{user}:{password}@liuhoward.tk:27017"
 
-user_client = MongoClient(user_uri)
+user_client = MongoClient(uri)
 ```
-
-
-
-
 
 ### MongoDB Create Database
 
 **Important:** In MongoDB, a database is not created until it gets content!
 
+
 ```python
 # we could print existing databases
 print(user_client.list_database_names())
 ```
+
 
 ```python
 # three ways to create database
@@ -685,403 +676,416 @@ user_db = user_client.get_database(f'bigdata_{user}')
 
 # use dot notation, attribute style
 #user_db = user_client.bigdata_liuhao16
-
 ```
 
 
+```python
+# bigdata_netid is not created yet
+print(user_client.list_database_names())
+```
 
 ### MongoDB Create Collection
+
 
 ```python
 user_col = user_db.get_collection("inventory")
 ```
 
-### MongoDB Insert
 
 ```python
-first_document = {"item": "journal", "qty": 25,"size": {"h": 14, "w": 21, "uom": "cm"},"status": "A"}
+# bigdata_netid is not created yet
+print(user_client.list_database_names())
+```
 
+### MongoDB Insert
+
+
+```python
+# insert one document
+
+first_document = {"item": "journal", "qty": 25,"size": {"h": 14, "w": 21, "uom": "cm"},"tags": ["blank", "red"],"status": "A"}
 
 user_col.insert_one(first_document)
 
-
-
 ```
 
+
 ```python
+# bigdata_netid is created
+print(user_client.list_database_names())
+```
+
+
+```python
+# insert multiple documents
 inventory_list = [
-    {"item": "canvas", "qty": 100, "size": {"h": 28, "w": 35.5, "uom": "cm"}, "status": "A"},
+    {"item": "canvas", "qty": 100, "size": {"h": 28, "w": 35.5, "uom": "cm"}, "tags": ["plain"], "status": "A"},
     {"item": "mat","qty": 85,"size": {"h": 27.9, "w": 35.5, "uom": "cm"},"status": "A"},
     {"item": "mousepad","qty": 25,"size": {"h": 19, "w": 22.85, "uom": "cm"},"status": "P"},
-    {"item": "notebook","qty": 50,"size": {"h": 8.5, "w": 11, "uom": "in"},"status": "P"},
-    {"item": "paper","qty": 100,"size": {"h": 8.5, "w": 11, "uom": "in"},"status": "D"},
-    {"item": "planner","qty": 75,"size": {"h": 22.85, "w": 30, "uom": "cm"},"status": "D"},
-    {"item": "postcard","qty": 45,"size": {"h": 10, "w": 15.25, "uom": "cm"},"status": "A"},
+    {"item": "notebook","qty": 50,"size": {"h": 8.5, "w": 11, "uom": "in"},"tags": ["red", "blank"],"status": "P"},
+    {"item": "paper","qty": 100,"size": {"h": 8.5, "w": 11, "uom": "in"},"tags": ["red", "blank", "plain"],"status": "D"},
+    {"item": "planner","qty": 75,"size": {"h": 22.85, "w": 30, "uom": "cm"},"tags": ["blank", "red"],"status": "D"},
+    {"item": "postcard","qty": 45,"size": {"h": 10, "w": 15.25, "uom": "cm"},"tags": ["blue"],"status": "A"},
     {"item": "sketchbook","qty": 80,"size": {"h": 14, "w": 21, "uom": "cm"},"status": "A"},
     {"item": "sketch pad","qty": 95,"size": {"h": 22.85, "w": 30.5, "uom": "cm"},"status": "A"}
 ]
 
-user_col.insert_many(inventory_list)
+ret = user_col.insert_many(inventory_list)
+
+print(ret.inserted_ids)
 ```
-
-
-
-
 
 ### MongoDB Query
 
+
+```python
+# The find_one() method returns the first occurrence in the selection.
+first_document = user_col.find_one()
+print(first_document)
+```
+
+
+```python
+# The find() method returns all occurrences in the selection.
+all_documents = user_col.find()
+type(all_documents)
+```
+
+
+```python
+for x in all_documents:
+    print(x)
+```
+
+
+```python
+# query
+query = {"status": "D" }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query to match embedded documents
+query = { "size": { "h": 14, "w": 21, "uom": "cm" } }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query to match embedded documents
+query = { "size.uom": "in" }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query elements in array
+query = { "tags": "red" }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query to match array
+query = { "tags": ["red", "blank"] }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with operators
+query = { "status": { "$in": [ "A", "D" ] } }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with operators
+query = { "status": "A", "qty": { "$lt": 30 } }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with operators
+query = { "$or": [ { "status": "A" }, { "qty": { "$lt": 30 } } ] }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with operators, why is there one document found?
+query = { "status": "A", "$or": [ { "qty": { "$lt": 30 } }, { "item": "/^p/" } ] }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with operators
+query = { "status": "A", "$or": [ { "qty": { "$lt": 30 } }, {"item": { "$regex": "^p"} } ] }
+query_documents = user_col.find(query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with limit
+query = { "status": "A"}
+query_documents = user_col.find(query).limit(2)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with limit
+query = { "status": "A"}
+query_documents = user_col.find(filter=query, limit=2)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with projection
+query = { "status": "A"}
+query_documents = user_col.find(filter=query, projection={"item": 1, "qty": 1})
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with project
+query = { "status": "A"}
+query_documents = user_col.find(filter=query, projection={"size": 0, "status": 0})
+for x in query_documents:
+    print(x)
+```
+
 ### MongoDB Sort
 
-### MongoDB Delete
+
+```python
+# query with projection
+query_documents = user_col.find().sort("item", 1)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with projection
+query_documents = user_col.find(sort=[("qty", -1), ("status", 1)])
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# query with projection
+query_documents = user_col.find().sort([("qty", -1), ("status", 1)])
+for x in query_documents:
+    print(x)
+```
 
 ### MongoDB Update
 
-### MongoDB Drop Collection
+
+```python
+# The first parameter of the update_one() method is a query object defining which document to update.
+
+query = { "item": "paper"}
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# change status from "D" to "P"
+query = { "item": "paper"}
+newvalues = { "$set": { "status": "P" } }
+user_col.update_one(query, newvalues)
+
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# add a new field lastModified with current date & time
+from datetime import datetime
+
+query = { "item": "paper"}
+newvalues = { "$set": { "lastModified": datetime.today()} }
+user_col.update_one(query, newvalues)
+
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+```
+
+
+```python
+# To update all documents that meets the criteria of the query, use the update_many() method.
+
+# add a new field lastModified with current date & time
+from datetime import datetime
+
+query = { "status": "A"}
+newvalues = { "$set": { "lastModified": datetime.today()} }
+user_col.update_many(query, newvalues)
+
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+
+```
+
+### MongoDB Delete
+
+
+```python
+# The first parameter of the delete_one() method is a query object defining which document to delete.
+query = { "item": "paper"}
+
+user_col.delete_one(query)
+# could not find the deleted document
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+
+```
+
+
+```python
+# To delete more than one document, use the delete_many() method.
+query = { "status": "A"}
+
+ret = user_col.delete_many(query)
+# could not find the deleted document
+query_documents = user_col.find(filter=query)
+for x in query_documents:
+    print(x)
+    
+print(ret.deleted_count, " documents deleted.")
+```
+
+**note** you can delete all documents by setting query as {}
 
 ### MongoDB Aggregation
 
 
+```python
+pipeline = [{"$count": "total_documents"}]
+ret = user_db.inventory.aggregate(pipeline)
 
-In order to start using MongoDB, we first have to install it. Installation instructions are found at the official [MongoDB documentation](https://docs.mongodb.com/manual/installation/). To run a quick install on Ubuntu run the commands below:
+print(list(ret))
+```
 
-`sudo apt update sudo apt install -y mongodb`
-
-Once this is done we'll check the service and database by running this command on the terminal:
-
-`sudo systemctl status mongodb`
-
-**●** mongodb.service - An object/document-oriented database
-   Loaded: loaded (/lib/systemd/system/mongodb.service; enabled; vendor preset:
-   Active: **active (running)** since Thu 2018-09-20 13:14:02 EAT; 23h ago
-     Docs: man:mongod(1)
- Main PID: 11446 (mongod)
-    Tasks: 27 (limit: 4915)
-   CGroup: /system.slice/mongodb.service
-           └─11446 /usr/bin/mongod --unixSocketPrefix=/run/mongodb --config /etc
-
-Sep 20 13:14:02 derrick systemd\[1\]: Started An object/document-oriented database
-lines 1-10/10 (END)
-
-The message above means that all is well and that we are set to start using MongoDB.
-
-Now that we have MongoDB installed we need a way to interact with it in our Python code. The official Python MongoDB driver is called [PyMongo](https://pypi.org/project/pymongo/). We can install it using pip as shown below:
-
-`pip install pymongo`
-
-Its possible for us to interact with MongoDB from the terminal, however for the purposes of this tutorial we'll run all our code in a [Jupyter Notebook](http://jupyter.org/).
-
-### Making a Connection with `MongoClient`
-
-The first thing we need to do is import `pymongo`. The import should run without any errors to signify that we've done our installation well.
 
 ```python
-import
+# To run an explain plan for this aggregation use the command() method:
+user_db.command('aggregate', 'inventory', pipeline=pipeline, explain=True)
 ```
 
-Establishing a connection in MongoDB requires us to create a [MongoClient](http://api.mongodb.com/python/current/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient) to the running MongoDB instance.
 
 ```python
-from
-import
+pipeline = [
+     {"$group": {"_id": {"status": "$status"}, "total_qty": {"$sum": "$qty"}}}]
+ret = user_db.inventory.aggregate(pipeline)
+
+print(list(ret))
 ```
 
-The above code will connect to the default host and port, but we can specify the host and port as shown below:
 
 ```python
-client = MongoClient("localhost", 27017)
+# To run an explain plan for this aggregation use the command() method:
+user_db.command('aggregate', 'inventory', pipeline=pipeline, explain=True)
 ```
 
-MongoDB also has a URI format for doing this.
 
 ```python
-'mongodb://localhost:27017/'
+pipeline = [
+     {"$group": {"_id": {"status": "$status"}, "avg_qty": {"$avg": "$qty"}}}]
+ret = user_db.inventory.aggregate(pipeline)
+
+print(list(ret))
 ```
 
-### Creating a Database
-
-To create a database in MongoDB, we use the `MongoClient` instance and specify a database name. MongoDB will create a database if it doesn't exist and connect to it.
 
 ```python
-'datacampdb'
+# As python dictionaries don’t maintain order you should use SON or collections.OrderedDict 
+# where explicit ordering is required eg “$sort”:
+from bson.son import SON
+
+print(user_db.name)
+
+# there two stages in this pipeline: group and sort
+pipeline = [
+    {"$group": {"_id": {"status": "$status"}, "total_qty": {"$sum": "$qty"}}},
+    {"$sort": SON([("total_qty", -1)])}
+]
+ret = user_db.inventory.aggregate(pipeline)
+
+print(list(ret))
+
 ```
 
-It is important to note that databases and collections are created lazily in MongoDB. This means that the collections and databases are created when the first document is inserted into them.
+### MongoDB Drop Collection
 
-### Data in MongoDB
-
-Data in MongoDB is represented and stored using [JSON-Style](https://en.wikipedia.org/wiki/JSON) documents. In PyMongo we use dictionaries to represent documents. Let's show an example of a PyMongo document below:
 
 ```python
-"author"
-"Derrick Mwiti"
-"about"
-"Introduction to MongoDB and Python"
-"tags"
-"mongodb"
-"python"
-"pymongo"
+user_col.drop()
 ```
 
-### Inserting a Document
+**important**
+remenber to close the connection
 
-To insert a document into a collection, we use the `insert_one()` method. As we saw earlier, a collection is similar to a table in RDBMS while a document is similar to a row.
 
 ```python
-articles = db.articles
-result = articles.insert_one(article)
+user_client.close()
 ```
 
-When the document is inserted, a special key `_id` is generated and its unique to this document. We can print the document ID as shown below:
+More pymongo examples could be found here [**Pymongo examples**](https://api.mongodb.com/python/current/examples/index.html)
+
+# Screenshots for submission
+0. Use python code in this tutorial, rebuild collection `inventory`, insert the 10 documents.
+1. In MongoDB Compass Community, aggregation:
+    group the 10 documents by `status`, and calculate the **average** `qty`. Take a screenshot of the whole screen.
+2. Use python code, print database name, group the 10 documents by `status` and calculate the **average** `qty`, sort them by `avg_qty` in ascending order. Take a screenshot including code & output.
+
+**note**: Put these two screenshots in MS word and save it as pdf for submission.
+
+# Reference
+[1] [https://www.datacamp.com/community/tutorials/introduction-mongodb-python](https://www.datacamp.com/community/tutorials/introduction-mongodb-python)  
+[2] [https://docs.mongodb.com/manual/](https://docs.mongodb.com/manual/)  
+[3] [https://www.tutorialspoint.com/mongodb/](https://www.tutorialspoint.com/mongodb/)  
+[4] [https://api.mongodb.com/python/current/tutorial.html](https://api.mongodb.com/python/current/tutorial.html)  
+
 
 ```python
-"First article key is: {}"
+
 ```
-
-```plain
-First article key is: 5ba5c05e2e8ca029163417f8
-```
-
-The articles collection is created after inserting the first document. We can confirm this using the `list_collection_names` method.
-
-```python
-db.list_collection_names()
-```
-
-```plain
-['articles', 'user']
-```
-
-We can insert multiple documents to a collection using the `insert_many()` method as shown below.
-
-```python
-"author"
-"Emmanuel Kens"
-"about"
-"Knn and Python"
-"tags"
-"Knn"
-"pymongo"
-"author"
-"Daniel Kimeli"
-"about"
-"Web Development and Python"
-"tags"
-"web"
-"design"
-"HTML"
-"The new article IDs are {}"
-```
-
-```plain
-The new article IDs are [ObjectId('5ba5c0c52e8ca029163417fa'), ObjectId('5ba5c0c52e8ca029163417fb')]
-```
-
-### Retrieving a Single Document with `find_one()`
-
-`find_one()` returns a single document matching the query or none if it doesn't exist. This method returns the first match that it comes across. When we call the method below, we get the first article we inserted into our collection.
-
-```python
-print(articles.find_one())
-```
-
-```plain
-{'_id': ObjectId('5ba5c0b52e8ca029163417f9'), 'author': 'Derrick Mwiti', 'about': 'Introduction to MongoDB and Python', 'tags': ['mongodb', 'python', 'pymongo']}
-```
-
-### Finding all Documents in a Collection
-
-MongoDB also allows us to retrieve all documents in a collection using the `find` method.
-
-```python
-for
-in
-```
-
-```plain
-{'_id': ObjectId('5ba5c0b52e8ca029163417f9'), 'author': 'Derrick Mwiti', 'about': 'Introduction to MongoDB and Python', 'tags': ['mongodb', 'python', 'pymongo']}
-{'_id': ObjectId('5ba5c0c52e8ca029163417fa'), 'author': 'Emmanuel Kens', 'about': 'Knn and Python', 'tags': ['Knn', 'pymongo']}
-{'_id': ObjectId('5ba5c0c52e8ca029163417fb'), 'author': 'Daniel Kimeli', 'about': 'Web Development and Python', 'tags': ['web', 'design', 'HTML']}
-```
-
-When building web applications, we usually get document IDs from the URL and try to retrieve them from our MongoDB collection. In order to achieve this, we first have to convert the obtained string ID into an `ObjectId`.
-
-```python
-from bson.objectid import ObjectId
-def get(post_id):
-    document = client.db.collection.find_one({'_id': ObjectId(post_id)})
-```
-
-### Return Some Fields Only
-
-Sometimes we might not want to return all the fields from our documents. Let's show we'd fetch specific fields. In our case we use 0 to specify that the `_id` should not be fetched and 1 to specify that `author` and `about` should be fetched. MongoDB doesn't allow us to specify zero twice. For example, specify `tags` to 0 below will generate an error. We are not allowed to specify both 0 and 1 values in the same object (unless one of the fields is the `_id` field). When we specify a field with the value 0, all other fields get the value 1.
-
-```python
-for article in articles.find({},{ "_id": 0, "author": 1, "about": 1}):
-  print(article)
-```
-
-```plain
-{'author': 'Derrick Mwiti', 'about': 'Introduction to MongoDB and Python'}
-{'author': 'Emmanuel Kens', 'about': 'Knn and Python'}
-{'author': 'Daniel Kimeli', 'about': 'Web Development and Python'}
-```
-
-### Sorting the Results
-
-We can use the `sort()` method to sort the results in ascending or descending order. The default order is ascending. We use 1 to signify ascending and -1 to signify descending.
-
-```python
-doc = articles.find().sort("author", -1)
-
-for x in doc:
-  print(x)
-```
-
-```plain
-{'_id': ObjectId('5ba5c0c52e8ca029163417fa'), 'author': 'Emmanuel Kens', 'about': 'Knn and Python', 'tags': ['Knn', 'pymongo']}
-{'_id': ObjectId('5ba5c0b52e8ca029163417f9'), 'author': 'Derrick Mwiti', 'about': 'Introduction to MongoDB and Python', 'tags': ['mongodb', 'python', 'pymongo']}
-{'_id': ObjectId('5ba5c0c52e8ca029163417fb'), 'author': 'Daniel Kimeli', 'about': 'Web Development and Python', 'tags': ['web', 'design', 'HTML']}
-```
-
-### Updating a Document
-
-We update a document using the `update_one()` method. The first parameter taken by this function is a query object defining the document to be updated. If the method finds more than one document, it will only update the first one. Let's update the name of the author in the article written by Derrick.
-
-```python
-query = { "author": "Derrick Mwiti" }
-new_author = { "$set": { "author": "John David" } }
-
-articles.update_one(query, new_author)
-
-for article in articles.find():
-  print(article)
-```
-
-```plain
-{'_id': ObjectId('5ba5c0b52e8ca029163417f9'), 'author': 'John David', 'about': 'Introduction to MongoDB and Python', 'tags': ['mongodb', 'python', 'pymongo']}
-{'_id': ObjectId('5ba5c0c52e8ca029163417fa'), 'author': 'Emmanuel Kens', 'about': 'Knn and Python', 'tags': ['Knn', 'pymongo']}
-{'_id': ObjectId('5ba5c0c52e8ca029163417fb'), 'author': 'Daniel Kimeli', 'about': 'Web Development and Python', 'tags': ['web', 'design', 'HTML']}
-```
-
-### Limiting the Result
-
-MongoDB enables us to limit the result of our query using the `limit` method. In our query below we'll limit the result to one record.
-
-```python
-limited_result = articles.find().limit(1)
-for x in limited_result:
-    print(x)
-```
-
-```plain
-{'_id': ObjectId('5ba5c0b52e8ca029163417f9'), 'author': 'John David', 'about': 'Introduction to MongoDB and Python', 'tags': ['mongodb', 'python', 'pymongo']}
-```
-
-### MongoDB Delete Document
-
-We use the `delete_one()` method to delete a document in MongoDB. The first parameter for this method is the query object of the document we want to delete. If this method finds more than one document, it deletes only the first one found. Let's delete the article with the id `5ba4cbe42e8ca029163417ce`.
-
-```python
-"_id"
-"5ba4d00e2e8ca029163417d4"
-```
-
-```plain
-<pymongo.results.DeleteResult at 0x7f3acae72ec8>
-```
-
-### Deleting Many Documents
-
-In order to delete many documents, we use the `delete_many()` method. Passing an empty query object will delete all the documents.
-
-```python
-" articles deleted."
-```
-
-```plain
-3  articles deleted.
-```
-
-### Dropping a Collection
-
-In MongoDB, we can delete a collection using the `drop()` method.
-
-```python
-articles.drop()
-```
-
-We can confirm that the collection has been deleted since when we call the `list_collection_names`, we get an empty list.
-
-```python
-db.list_collection_names()
-```
-
-```plain
-[]
-```
-
-It is impossible for us to go through all the MongoDB methods in this tutorial. I would recommend that the reader visits the official documentation of [PyMongo](http://api.mongodb.com/python/current/#about-this-documentation) and [MongoDB](https://docs.mongodb.com/) to learn more.
-
-### MongoDB object document mapper (ODM)
-
-In SQL we have object relational mapper (ORM) mappers that provides an abstraction when working with SQL. MongoDB has something similar know as object document mapper(ODM). [MongoEngine](http://mongoengine.org/) is a library that provides a high-level abstraction on top of PyMongo. Run the command below to install it using pip.
-
-`pip install mongoengine`
-
-There are quite a number of other MongoDB ODMs that we can experiment with and choose the best option for our use. Examples of other MongoDB ODMs include [ming](https://ming.readthedocs.io/en/latest/), [minimongo](https://github.com/slacy/minimongo) and, [mongokit](https://github.com/namlook/mongokit).
-
-After we have imported `mongoengine`, we use the `connect` function and specify the database, port, and the host in order to establish a connection with the MongoDB instance.
-
-```python
-from mongoengine import *
-connect('datacampdb', host='localhost', port=27017)
-```
-
-```plain
-MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True, read_preference=Primary())
-```
-
-### Defining our Documents
-
-Let's assume that we are developing a social site that will allow users to post messages. This means that we need a users and a comments document. Just as if we were using a relational database with an ORM, we define the fields a user will have and the data types. We create the document by sub-classing the _Document_ class from `mongoengine`. `required=True` means that we have to specify this field when creating a user. Otherwise, an exception will be thrown.
-
-```python
-class User(Document):
-    email = StringField(required=True)
-    first_name = StringField(max_length=30)
-    last_name = StringField(max_length=30)
-```
-
-Now let's show how we'd create a posts document and reference the users document. The `ReferenceField` enables us to make reference from one document to another in `mongoengine`.
-
-```python
-class Post(Document):
-    title = StringField(max_length=120, required=True)
-    author = ReferenceField(User)
-```
-
-### Saving Documents
-
-To save the document to the database, call the `save()` method. If the document does not exist in the database, it will be created. If it does already exist, then changes will be updated atomically.
-
-```python
-"connect@derrickmwiti.com"
-"Derrick"
-"Mwiti"
-```
-
-```plain
-<User: User object>
-```
-
-Accessing the just created is very similar to other ORMs
-
-```python
-print(user.id, user.email, user.first_name, user.last_name)
-```
-
-```plain
-5ba5c3bf2e8ca029163417fc connect@derrickmwiti.com Derrick Mwiti
-```
-
-
