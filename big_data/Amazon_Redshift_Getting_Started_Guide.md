@@ -713,7 +713,7 @@ When you have completed this tutorial, you should reset your environment to the 
 
    ![2019-08-30_19-48](https://github.com/liuhoward/teaching/raw/master/big_data/redshift/2019-08-30_19-48.png)
 
-
+**note**: Put these screenshots in MS word and save it as pdf for submission.
 
 # Reference
 
